@@ -12,8 +12,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 
+#excel parser
+gem 'roo'
+gem 'roo-xls'
+
 
 group :development, :test do
+  gem 'pry-byebug'
 end
 
 group :development do
