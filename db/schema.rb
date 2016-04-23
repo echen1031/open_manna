@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422143506) do
+ActiveRecord::Schema.define(version: 20160423144523) do
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "send_day_1"
+    t.boolean  "send_day_2"
+    t.boolean  "send_day_3"
+    t.boolean  "send_day_4"
+    t.boolean  "send_day_5"
+    t.boolean  "send_day_6"
+    t.boolean  "send_day_7"
+    t.integer  "send_hour"
+    t.string   "time_zone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "verses", force: :cascade do |t|
     t.string   "reference"
