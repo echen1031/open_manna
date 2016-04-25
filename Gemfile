@@ -34,4 +34,5 @@ end
 
 gem 'devise'
 gem 'figaro'
+gem 'simple_form'
 
