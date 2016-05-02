@@ -20,6 +20,7 @@ gem 'roo-xls'
 group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
+  gem 'webmock'
 end
 
 group :development do
@@ -36,4 +37,5 @@ end
 gem 'devise'
 gem 'figaro'
 gem 'simple_form'
+gem 'rest-client'
 
