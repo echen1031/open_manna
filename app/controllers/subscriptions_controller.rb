@@ -6,6 +6,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def new
+    binding.pry
   end
 
   def edit

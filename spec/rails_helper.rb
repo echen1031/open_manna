@@ -4,6 +4,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'webmock/rspec'
+require 'support/factory_girl'
+require 'support/warden'
+
 WebMock.disable_net_connect!(allow_locahost: true)
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -12,6 +15,7 @@ RSpec.configure do |config|
     stub_request(:get, /api.lsm.org/).
       to_return(status: 200, body: "stubbed response")
   end
+
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.use_transactional_fixtures = true

@@ -8,7 +8,6 @@ RSpec.describe BibleVerseService do
 
       response = RestClient.get url
 
-      binding.pry
       expect(response).to be_an_instance_of(String)
     end
   end
