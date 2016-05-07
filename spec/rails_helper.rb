@@ -11,10 +11,6 @@ WebMock.disable_net_connect!(allow_locahost: true)
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.before(:each) do
-    stub_request(:get, /api.lsm.org/).
-      to_return(status: 200, body: "stubbed response")
-  end
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
