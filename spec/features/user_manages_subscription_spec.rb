@@ -12,7 +12,7 @@ feature "User manages his or her subscription" do
     fill_in 'Phone', with: '555-555-5555'
     select('Eastern', :from => 'Time zone')
     check 'subscription_send_day_1'
-    select('7 am', :from => 'Time')
+    select('7 am', :from => 'Select Time')
     check 'subscription_send_day_1'
     click_button 'Create'
     expect(Subscription.count).to eq 1

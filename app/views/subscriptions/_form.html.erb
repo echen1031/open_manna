@@ -2,13 +2,13 @@
   <div class="form">
     <div class="input email optional user_email">
       <%= f.input :phone %>
-      <%= f.input :time_zone %>
+      <%= f.input :time_zone, collection: ActiveSupport::TimeZone.us_zones %>
     </div>
   </div>
   <br>
 
   <table class="table table-bordered table-striped table-condensed checkbox_days">
-    <label class="control-label">Days</label>
+    <label class="control-label">Select Days</label>
     <tr>
       <th>Select All</th>
       <th>Sun</th>
@@ -33,7 +33,7 @@
   </table>
 
   <div class="form">
-    <%= f.input :send_hour, label: 'Time', collection: select_hours,
+    <%= f.input :send_hour, label: 'Select Time', collection: select_hours,
       :include_blank => false %>
   </div>
   <hr>
