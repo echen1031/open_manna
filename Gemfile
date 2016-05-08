@@ -22,6 +22,7 @@ group :test do
   gem 'webmock'
   gem 'capybara'
   gem 'faker'
+  gem 'shoulda-matchers'
 end
 
 group :development do
