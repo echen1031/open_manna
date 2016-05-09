@@ -17,8 +17,12 @@ gem 'roo'
 gem 'roo-xls'
 
 
-group :development, :test do
-  gem 'pry-byebug'
+group :test do
+  gem 'rspec-rails'
+  gem 'webmock'
+  gem 'capybara'
+  gem 'faker'
+  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -26,6 +30,13 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
+
+group :test, :development do
+  gem 'factory_girl_rails'
+  gem 'pry-byebug'
+  gem 'launchy'
+end
+
 
 group :production do
   gem 'pg'
@@ -35,4 +46,5 @@ end
 gem 'devise'
 gem 'figaro'
 gem 'simple_form'
+gem 'rest-client'
 

@@ -1,0 +1,46 @@
+<%= simple_form_for @subscription, html: {class: "well"} do |f| %>
+  <div class="form">
+    <div class="input email optional user_email">
+      <%= f.input :phone %>
+      <%= f.input :time_zone, collection: ActiveSupport::TimeZone.us_zones %>
+    </div>
+  </div>
+  <br>
+
+  <table class="table table-bordered table-striped table-condensed checkbox_days">
+    <label class="control-label">Select Days</label>
+    <tr>
+      <th>Select All</th>
+      <th>Sun</th>
+      <th>Mon</th>
+      <th>Tues</th>
+      <th>Wed</th>
+      <th>Thurs</th>
+      <th>Fri</th>
+      <th>Sat</th>
+    </tr>
+    <tr>
+      <td> <input id="check_all_days" type="checkbox"></td>
+      <td><%= f.check_box :send_day_1 %></td>
+      <td><%= f.check_box :send_day_2 %></td>
+      <td><%= f.check_box :send_day_3 %></td>
+      <td><%= f.check_box :send_day_4 %></td>
+      <td><%= f.check_box :send_day_5 %></td>
+      <td><%= f.check_box :send_day_6 %></td>
+      <td><%= f.check_box :send_day_7 %></td>
+    </tr>
+    <tr> (Select at least one day) </tr>
+  </table>
+
+  <div class="form">
+    <%= f.input :send_hour, label: 'Select Time', collection: select_hours,
+      :include_blank => false %>
+  </div>
+  <hr>
+
+  <div class="action">
+    <%= f.submit 'Create', :class => 'btn btn-primary'%>
+  </div>
+
+
+<% end %>
