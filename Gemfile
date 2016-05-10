@@ -47,4 +47,5 @@ gem 'devise'
 gem 'figaro'
 gem 'simple_form'
 gem 'rest-client'
+gem 'sidekiq'
 
