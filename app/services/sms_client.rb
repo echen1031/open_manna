@@ -1,6 +1,5 @@
 class SMSClient
   require 'nexmo'
-  cattr_accessor :client
 
   def initialize
     @client = Nexmo::Client.new(key: ENV['NEXMO_API_KEY'],
