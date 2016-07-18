@@ -53,4 +53,5 @@ gem 'sidekiq'
 gem 'nexmo'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'draper'
 
