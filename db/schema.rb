@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509161757) do
+ActiveRecord::Schema.define(version: 20160724045606) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
-    t.boolean  "send_day_1"
-    t.boolean  "send_day_2"
-    t.boolean  "send_day_3"
-    t.boolean  "send_day_4"
-    t.boolean  "send_day_5"
-    t.boolean  "send_day_6"
-    t.boolean  "send_day_7"
+    t.boolean  "send_monday",    default: false
+    t.boolean  "send_tuesday",   default: false
+    t.boolean  "send_wednesday", default: false
+    t.boolean  "send_thursday",  default: false
+    t.boolean  "send_friday",    default: false
+    t.boolean  "send_saturday",  default: false
+    t.boolean  "send_sunday",    default: false
     t.integer  "send_hour"
     t.string   "time_zone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "phone"
   end
 

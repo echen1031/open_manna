@@ -1,4 +1,4 @@
-class DailySMSWorker
+class DailySmsWorker
   include Sidekiq::Worker
 
   def perform(subscription_id, verse_id)

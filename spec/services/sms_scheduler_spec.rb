@@ -1,12 +1,36 @@
 require 'rails_helper'
 
-describe SMS_Scheduler do
-  it "schedules text sending according to the user's preferences" do
-    sub = create(:subscription, send_day_1: true, send_hour: 7, time_zone: "Eastern Time (US & Canada)")
-    verse = create(:verse)
-    Timecop.travel("2016-07-11")
-    SMS_Scheduler.set_daily_sms_job(sub, verse)
-    expect(DailySMSWorker.jobs.size).to eq 1
-    Timecop.return
+describe SmsScheduler do
+  let(:monday_subscription) { create(:subscription, send_monday: true, time_zone: "Eastern Time (US & Canada)") }
+  let(:tuesday_subscription) { create(:subscription, send_tuesday: true, time_zone: "Eastern Time (US & Canada)") }
+
+  context "Sending text messages" do
+    before do
+      Timecop.travel("2016-07-11") #Monday
+    end
+
+    after do
+      Timecop.return
+    end
+
+    it "enques text message job" do
+      monday_subscription
+      verse = double(:verse, id: 1)
+      allow(Verse).to receive(:random).and_return(verse)
+
+      SmsScheduler.set_daily_sms_job
+
+      expect(DailySmsWorker.jobs.size).to eq 1
+    end
+
+    it "does not enques text message job on the wrong day" do
+      tuesday_subscription
+      verse = double(:verse, id: 1)
+      allow(Verse).to receive(:random).and_return(verse)
+
+      SmsScheduler.set_daily_sms_job
+
+      expect(DailySmsWorker.jobs.size).to eq 0
+    end
   end
 end

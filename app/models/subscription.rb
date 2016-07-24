@@ -6,8 +6,15 @@ class Subscription < ActiveRecord::Base
 
   validates :user_id, :time_zone, :phone, :send_hour, presence: true
 
-  def sms_to_send_today?
-    check_for_send_day_on_subscription
+  def no_sms_for_today
+    current_day = Time.now.wday
+    send_day_checker(current_day) == false
+  end
+
+  def send_day_checker(current_day)
+    if current_day == 1
+      self.send_monday
+    end
   end
 
   def check_for_send_day_on_subscription
