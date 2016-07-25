@@ -24,7 +24,8 @@ describe SmsScheduler do
     end
 
     it "does not enques text message job on the wrong day" do
-      tuesday_subscription
+      Timecop.travel(1.day)
+      monday_subscription
       verse = double(:verse, id: 1)
       allow(Verse).to receive(:random).and_return(verse)
 
