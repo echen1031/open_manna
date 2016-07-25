@@ -8,4 +8,13 @@ namespace :import_verses do
       print "."
     end
   end
+
+  task fill_verse_text: :environment do
+    Verse.all.each do |v|
+      verse_service = BibleVerseApiService.new(v.reference)
+      verse_text = verse_service.retrieve_verse_text
+      v.update_attributes(text: verse_text)
+      print "."
+    end
+  end
 end

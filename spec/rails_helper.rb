@@ -7,6 +7,7 @@ require 'webmock/rspec'
 require 'support/factory_girl'
 require 'support/warden'
 require 'support/shoulda_matchers'
+require 'support/rspec_sidekiq'
 
 WebMock.disable_net_connect!(allow_locahost: true)
 ActiveRecord::Migration.maintain_test_schema!

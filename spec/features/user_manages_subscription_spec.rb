@@ -11,13 +11,13 @@ feature "User manages his or her subscription" do
     visit new_subscription_path
     fill_in 'Phone', with: '555-555-5555'
     select('Eastern', :from => 'Time zone')
-    check 'subscription_send_day_1'
+    check 'subscription_send_monday'
     select('7 am', :from => 'Select Time')
-    check 'subscription_send_day_1'
+    check 'subscription_send_monday'
     click_button 'Create'
     expect(Subscription.count).to eq 1
     subscription = Subscription.first
-    expect(subscription.send_day_1).to eq true
+    expect(subscription.send_monday).to eq true
     expect(subscription.user_id).to eq user.id
   end
 end
