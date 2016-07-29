@@ -1,4 +1,4 @@
-<%= simple_form_for @subscription, html: {class: "well"} do |f| %>
+<%= simple_form_for [:user, @subscription], html: {class: "well"} do |f| %>
   <div class="form">
     <div class="input email optional user_email">
       <%= f.input :phone %>
