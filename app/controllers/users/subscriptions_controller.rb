@@ -1,4 +1,4 @@
-class SubscriptionsController < ApplicationController
+class Users::SubscriptionsController < ApplicationController
   def index
   end
 

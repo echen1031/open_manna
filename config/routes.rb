@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :subscriptions
+  resources :users do
+    resources :subscriptions, controller: 'users/subscriptions'
+  end
 
   get 'about' => 'welcome#about'
 

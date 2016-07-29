@@ -8,7 +8,7 @@ feature "User manages his or her subscription" do
 
   scenario "creates subscription successfully" do
     user = User.first
-    visit new_subscription_path
+    visit new_user_subscription_path(user.id)
     fill_in 'Phone', with: '555-555-5555'
     select('Eastern', :from => 'Time zone')
     check 'subscription_send_day_1'
