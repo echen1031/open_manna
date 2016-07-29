@@ -23,6 +23,7 @@ group :test do
   gem 'capybara'
   gem 'faker'
   gem 'shoulda-matchers'
+  gem 'rspec-sidekiq'
 end
 
 group :development do
@@ -35,6 +36,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'pry-byebug'
   gem 'launchy'
+  gem 'timecop'
 end
 
 
@@ -47,4 +49,9 @@ gem 'devise'
 gem 'figaro'
 gem 'simple_form'
 gem 'rest-client'
+gem 'sidekiq'
+gem 'nexmo'
+gem 'sinatra', require: false
+gem 'slim'
+gem 'draper'
 

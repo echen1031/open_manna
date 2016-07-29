@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users
   resources :users do
@@ -7,4 +9,5 @@ Rails.application.routes.draw do
   get 'about' => 'welcome#about'
 
   root to: 'welcome#index'
+  mount Sidekiq::Web, at: '/sidekiq'
 end
