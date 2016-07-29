@@ -1,0 +1,34 @@
+= simple_form_for [:user, @subscription], html: {class: "well"} do |f|
+  .form
+    .input.email.optional.user_email
+      = f.input :phone
+      = f.input :time_zone, collection: ActiveSupport::TimeZone.us_zones
+  %br/
+  %table.table.table-bordered.table-striped.table-condensed.checkbox_days
+    %label.control-label Select Days
+    %tr
+      %th Select All
+      %th Sun
+      %th Mon
+      %th Tues
+      %th Wed
+      %th Thurs
+      %th Fri
+      %th Sat
+    %tr
+      %td
+        %input#check_all_days{:type => "checkbox"}/
+      %td= f.check_box :send_monday
+      %td= f.check_box :send_tuesday
+      %td= f.check_box :send_wednesday
+      %td= f.check_box :send_thursday
+      %td= f.check_box :send_friday
+      %td= f.check_box :send_saturday
+      %td= f.check_box :send_sunday
+    %tr (Select at least one day)
+  .form
+    = f.input :send_hour, label: 'Select Time', collection: select_hours, |
+      :include_blank => false                                             |
+  %hr/
+  .action
+    = f.submit 'Create', :class => 'btn btn-primary'

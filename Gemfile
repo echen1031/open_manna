@@ -54,4 +54,6 @@ gem 'nexmo'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'draper'
+gem 'html2haml'
+gem 'haml-rails'
 
