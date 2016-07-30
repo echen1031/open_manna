@@ -14,7 +14,10 @@
           %tr
             %td= s.name
             %td= s.phone
-            %td= link_to "Edit", edit_subscription_path(s)
+            %td
+              =link_to "Edit", edit_subscription_path(s), class: "btn btn-warning"
+              |
+              =link_to "Delete", subscription_path(s), :method => :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to remove this subscription?" }
 
 
 

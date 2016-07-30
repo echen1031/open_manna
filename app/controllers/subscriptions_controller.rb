@@ -37,6 +37,13 @@ class SubscriptionsController < ApplicationController
   def edit
   end
 
+  def destroy
+    @subscription.destroy
+
+    flash[:notice] = "Successfully removed subscription"
+    redirect_to subscriptions_path
+  end
+
   private
 
   def subscription_params

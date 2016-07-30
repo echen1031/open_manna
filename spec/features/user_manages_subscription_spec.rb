@@ -41,4 +41,11 @@ feature "User manages his or her subscription" do
     subscription.reload
     expect(subscription.name).to eq "Test"
   end
+
+  scenario "deletes his subscription successfully" do
+    create(:subscription)
+    visit subscriptions_path
+    click_link "Delete"
+    expect(Subscription.count).to eq 0
+  end
 end
