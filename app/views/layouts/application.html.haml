@@ -12,7 +12,7 @@
       %ul.nav.nav-tabs
         %li= link_to "Home", root_path
         %li= link_to "About", about_path
-        %li= link_to "Subscriptions", user_subscriptions_path(current_user) if current_user
+        %li= link_to "Subscriptions", subscriptions_path if current_user
         .pull-right.user-info
           - if current_user
             = link_to "#{current_user.email}", edit_user_registration_path

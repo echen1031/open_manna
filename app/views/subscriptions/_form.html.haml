@@ -1,4 +1,4 @@
-= simple_form_for [:user, @subscription], html: {class: "well"} do |f|
+= simple_form_for @subscription, html: {class: "well"} do |f|
   .form
     .input.email.optional.user_email
       = f.input :name
@@ -32,4 +32,4 @@
       :include_blank => false                                             |
   %hr/
   .action
-    = f.submit 'Create', :class => 'btn btn-primary'
+    = f.submit :class => 'btn btn-primary'

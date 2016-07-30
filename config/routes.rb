@@ -2,9 +2,8 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   devise_for :users
-  resources :users do
-    resources :subscriptions, controller: 'users/subscriptions'
-  end
+  resources :users
+  resources :subscriptions
 
   get 'about' => 'welcome#about'
 

@@ -1,0 +1,21 @@
+.container
+  %h1 Subscriptions
+  = link_to "New Subscription", new_subscription_path, class: "btn btn-success"
+  %p
+  %body
+    .table-responsive
+      %table.table.table-bordered.table-hover
+        %thead
+          %tr
+            %th Name
+            %th Phone
+            %th Action
+        - @subscriptions.each do |s|
+          %tr
+            %td= s.name
+            %td= s.phone
+            %td= link_to "Edit", edit_subscription_path(s)
+
+
+
+

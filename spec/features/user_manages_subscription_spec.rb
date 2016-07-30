@@ -7,7 +7,8 @@ feature "User manages his or her subscription" do
   end
 
   scenario "creates subscription successfully" do
-    visit new_user_subscription_path(user.id)
+    visit subscriptions_path
+    click_link 'New Subscription'
     fill_in 'Name', with: 'Morning Revival'
     fill_in 'Phone', with: '555-555-5555'
     select('Eastern', :from => 'Time zone')
@@ -23,10 +24,21 @@ feature "User manages his or her subscription" do
   end
 
   scenario "sees all subscriptions that belongs to him" do
-    subscriptions = create_list(:subscription, 2)
-    visit user_subscriptions_path(user.id)
+    subscriptions = create_list(:subscription, 2, user_id: user.id)
+    visit subscriptions_path
     subscriptions.each do |s|
       expect(page).to have_content("#{s.name}")
     end
+  end
+
+  scenario "updates his subscription successfully" do
+    subscription = create(:subscription)
+    visit subscriptions_path
+    click_link "Edit"
+    fill_in "Name", with: "Test"
+    select('Eastern', :from => 'Time zone')
+    click_button "Update Subscription"
+    subscription.reload
+    expect(subscription.name).to eq "Test"
   end
 end
