@@ -6,6 +6,6 @@ FactoryGirl.define do
     name { Faker::Name.name }
     send_hour 7
     time_zone "Eastern Time (US & Canada)"
-    phone "15555555555"
+    phone_number "15555555555"
   end
 end

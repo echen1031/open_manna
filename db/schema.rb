@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730024029) do
+ActiveRecord::Schema.define(version: 20160731205424) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160730024029) do
     t.string   "time_zone"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.string   "phone"
+    t.string   "phone_number"
     t.string   "name"
   end
 

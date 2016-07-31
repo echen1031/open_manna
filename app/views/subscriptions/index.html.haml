@@ -8,14 +8,14 @@
         %thead
           %tr
             %th Name
-            %th Phone
+            %th Phone Number
             %th Subscribed Days
             %th Time to Send
             %th Action
         - @subscriptions.each do |sub|
           %tr
             %td= sub.name
-            %td= sub.phone
+            %td= sub.phone_number
             %td= sub.subscribed_days
             %td= sub.readable_hour
             %td

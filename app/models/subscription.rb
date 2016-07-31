@@ -4,7 +4,8 @@ class Subscription < ActiveRecord::Base
   LASTEST_HOUR = 23
   RANDOM_HOUR = 99
 
-  validates :user_id, :time_zone, :phone, :send_hour, presence: true
+  validates :user_id, :time_zone, :phone_number, :send_hour, presence: true
+  validates :phone_number, phone_number_format: true
 
   def no_sms_for_today
     self.send(current_day_in_words) == false
