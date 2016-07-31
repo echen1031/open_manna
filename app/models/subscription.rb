@@ -5,7 +5,7 @@ class Subscription < ActiveRecord::Base
   RANDOM_HOUR = 99
 
   validates :user_id, :time_zone, :phone_number, :send_hour, presence: true
-  #validates phone_number_format: true
+  validates :phone_number, phone_number_format: true
 
   def no_sms_for_today
     self.send(current_day_in_words) == false
