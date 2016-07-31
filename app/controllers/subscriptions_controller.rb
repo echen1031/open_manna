@@ -2,7 +2,7 @@ class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:edit, :update, :destroy]
 
   def index
-    @subscriptions = current_user.subscriptions
+    @subscriptions = SubscriptionDecorator.decorate_collection(current_user.subscriptions)
   end
 
   def new
