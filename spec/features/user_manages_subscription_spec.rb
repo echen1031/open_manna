@@ -32,7 +32,7 @@ feature "User manages his or her subscription" do
   end
 
   scenario "updates his subscription successfully" do
-    subscription = create(:subscription)
+    subscription = create(:subscription, user_id: user.id)
     visit subscriptions_path
     click_link "Edit"
     fill_in "Name", with: "Test"
@@ -43,7 +43,7 @@ feature "User manages his or her subscription" do
   end
 
   scenario "deletes his subscription successfully" do
-    create(:subscription)
+    create(:subscription, user_id: user.id)
     visit subscriptions_path
     click_link "Delete"
     expect(Subscription.count).to eq 0
