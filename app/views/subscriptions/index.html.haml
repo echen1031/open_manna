@@ -1,0 +1,28 @@
+.container
+  %h1 Subscriptions
+  = link_to "New Subscription", new_subscription_path, class: "btn btn-success"
+  %p
+  %body
+    .table-responsive
+      %table.table.table-bordered.table-hover
+        %thead
+          %tr
+            %th Name
+            %th Phone
+            %th Subscribed Days
+            %th Time to Send
+            %th Action
+        - @subscriptions.each do |sub|
+          %tr
+            %td= sub.name
+            %td= sub.phone
+            %td= sub.subscribed_days
+            %td= sub.readable_hour
+            %td
+              =link_to "Edit", edit_subscription_path(sub), class: "btn btn-warning"
+              |
+              =link_to "Delete", subscription_path(sub), :method => :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to remove this subscription?" }
+
+
+
+

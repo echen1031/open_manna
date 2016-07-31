@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe SmsScheduler do
-  let(:monday_subscription) { create(:subscription, send_monday: true, time_zone: "Eastern Time (US & Canada)") }
-  let(:tuesday_subscription) { create(:subscription, send_tuesday: true, time_zone: "Eastern Time (US & Canada)") }
+  let(:monday_subscription) { create(:subscription, send_monday: true) }
+  let(:tuesday_subscription) { create(:subscription, send_tuesday: true) }
 
   context "Sending text messages" do
     before do
