@@ -10,7 +10,7 @@ feature "User manages his or her subscription" do
     visit subscriptions_path
     click_link 'New Subscription'
     fill_in 'Name', with: 'Morning Revival'
-    fill_in 'Phone', with: '555-555-5555'
+    fill_in 'Phone number', with: '555-555-5555'
     select('Eastern', :from => 'Time zone')
     check 'subscription_send_monday'
     select('7 am', :from => 'Select Time')
