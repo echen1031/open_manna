@@ -33,3 +33,22 @@
   %hr/
   .action
     = f.submit :class => 'btn btn-primary'
+
+- content_for :javascripts do
+  :javascript
+    $( document ).ready(function() {
+      $('#check_all_days').click (function () {
+        var checkedStatus = this.checked;
+        $('.checkbox_days').find('td :checkbox').each(function () {
+          $(this).prop('checked', checkedStatus);
+        });
+      });
+      $('.checkbox_days td :checkbox').click (function() {
+        var checkedStatus = this.checked;
+          if (!checkedStatus) {
+            $('#check_all_days').prop('checked', false);
+        }
+      });
+    });
+
+
