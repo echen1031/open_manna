@@ -47,7 +47,7 @@ class SubscriptionsController < ApplicationController
   private
 
   def subscription_params
-    params.require(:subscription).permit(:send_monday, :send_tuesday, :send_wednesdsay, :send_thursdsay, :send_friday, :send_saturday, :send_sunday, :send_hour, :time_zone, :phone_number, :name)
+    params.require(:subscription).permit(:send_monday, :send_tuesday, :send_wednesday, :send_thursday, :send_friday, :send_saturday, :send_sunday, :send_hour, :time_zone, :phone_number, :name)
   end
 
   def set_subscription

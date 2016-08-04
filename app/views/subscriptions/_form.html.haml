@@ -2,7 +2,7 @@
   .form
     .input.email.optional.user_email
       = f.input :name
-      = f.input :phone_number
+      = f.input :phone_number, placeholder: '1-555-555-5555'
       = f.input :time_zone, collection: ActiveSupport::TimeZone.us_zones
   %br/
   %table.table.table-bordered.table-striped.table-condensed.checkbox_days
@@ -19,13 +19,13 @@
     %tr
       %td
         %input#check_all_days{:type => "checkbox"}/
+      %td= f.check_box :send_sunday
       %td= f.check_box :send_monday
       %td= f.check_box :send_tuesday
       %td= f.check_box :send_wednesday
       %td= f.check_box :send_thursday
       %td= f.check_box :send_friday
       %td= f.check_box :send_saturday
-      %td= f.check_box :send_sunday
     %tr (Select at least one day)
   .form
     = f.input :send_hour, label: 'Select Time', collection: select_hours, |
@@ -33,3 +33,20 @@
   %hr/
   .action
     = f.submit :class => 'btn btn-primary'
+
+:javascript
+  $('#check_all_days').click(function(event) {
+    if(this.checked) {
+      // Iterate each checkbox
+        $(':checkbox').each(function() {
+          this.checked = true;
+        });
+    }
+    else {
+      $(':checkbox').each(function() {
+          this.checked = false;
+      });
+    }
+  });
+
+
