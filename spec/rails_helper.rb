@@ -9,6 +9,7 @@ require 'support/warden'
 require 'support/shoulda_matchers'
 require 'support/rspec_sidekiq'
 
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 WebMock.disable_net_connect!(allow_locahost: true)
 ActiveRecord::Migration.maintain_test_schema!
 
