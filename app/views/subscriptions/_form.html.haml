@@ -19,13 +19,13 @@
     %tr
       %td
         %input#check_all_days{:type => "checkbox"}/
+      %td= f.check_box :send_sunday
       %td= f.check_box :send_monday
       %td= f.check_box :send_tuesday
       %td= f.check_box :send_wednesday
       %td= f.check_box :send_thursday
       %td= f.check_box :send_friday
       %td= f.check_box :send_saturday
-      %td= f.check_box :send_sunday
     %tr (Select at least one day)
   .form
     = f.input :send_hour, label: 'Select Time', collection: select_hours, |
@@ -34,21 +34,19 @@
   .action
     = f.submit :class => 'btn btn-primary'
 
-- content_for :javascripts do
-  :javascript
-    $( document ).ready(function() {
-      $('#check_all_days').click (function () {
-        var checkedStatus = this.checked;
-        $('.checkbox_days').find('td :checkbox').each(function () {
-          $(this).prop('checked', checkedStatus);
+:javascript
+  $('#check_all_days').click(function(event) {
+    if(this.checked) {
+      // Iterate each checkbox
+        $(':checkbox').each(function() {
+          this.checked = true;
         });
+    }
+    else {
+      $(':checkbox').each(function() {
+          this.checked = false;
       });
-      $('.checkbox_days td :checkbox').click (function() {
-        var checkedStatus = this.checked;
-          if (!checkedStatus) {
-            $('#check_all_days').prop('checked', false);
-        }
-      });
-    });
+    }
+  });
 
 
