@@ -1,19 +1,25 @@
 .jumbotron
-  %h1 Open Manna
-  %br
-  %h4
-  %br
-    \#{link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary'} today!
+  .text-center
+    %h1 Open Manna
+    %h4 
+      %i
+        Sending Bible Verses via SMS
+    %br
+    %h3
+      #{link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary'} today!
 
-.bs-callout.bs-callout-primary
-  %h4
-    %span.glyphicon.glyphicon-phone{"aria-hidden" => "true"}
-    Receive encouraging Bible verses straight to your phone each day.
-.bs-callout.bs-callout-success
-  %h4
-    %span.glyphicon.glyphicon-list-alt{"aria-hidden" => "true"}
-    Over 500 hand-picked New Testament verses ready to be dispensed.
-.bs-callout.bs-callout-default
-  %h4
-    %span.glyphicon.glyphicon-time{"aria-hidden" => "true"}
-    Create your own delivery schedule for timely supply.
+.col-md-4
+  .bs-callout.bs-callout-primary
+    %h4
+      %span.glyphicon.glyphicon-phone{"aria-hidden" => "true"}
+      Receive encouraging Bible verses straight to your phone each day.
+.col-md-4
+  .bs-callout.bs-callout-success
+    %h4
+      %span.glyphicon.glyphicon-list-alt{"aria-hidden" => "true"}
+      Over 500 hand-picked New Testament verses ready to be dispensed.
+.col-md-4
+  .bs-callout.bs-callout-default
+    %h4
+      %span.glyphicon.glyphicon-time{"aria-hidden" => "true"}
+      Create your own delivery schedule for timely supply.

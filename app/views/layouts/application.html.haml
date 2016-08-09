@@ -8,29 +8,41 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    .container
-      %ul.nav.nav-tabs
-        %li= link_to "Home", root_path
-        %li= link_to "About", about_path
-        %li= link_to "Subscriptions", subscriptions_path if current_user
-        .pull-right.user-info
-          - if current_user
-            = link_to "#{current_user.email}", edit_user_registration_path
-            = link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-sm'
-          - else
-            = link_to "Log In", new_user_session_path, class: 'btn btn-info btn-sm'
-            or
-            = link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-sm'
-      - if flash[:notice]
-        .alert.alert-success
-          %button.close{"data-dismiss" => "alert", :type => "button"} ×
-          = flash[:notice]
-      - elsif flash[:error]
-        .alert.alert-danger
-          %button.close{"data-dismiss" => "alert", :type => "button"} ×
-          = flash[:error]
-      - elsif flash[:alert]
-        .alert.alert-warning
-          %button.close{"data-dismiss" => "alert", :type => "button"} ×
-          = flash[:alert]
-      = yield
+    %br
+    %br
+    .page-container
+      .navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".sidebar-nav", "data-toggle" => "offcanvas", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand OpenManna
+        %ul.nav.nav-tabs
+          %li= link_to "Home", root_path
+          %li= link_to "About", about_path
+          %li= link_to "Subscriptions", subscriptions_path if current_user
+          .pull-right.user-info
+            - if current_user
+              = link_to "#{current_user.email}", edit_user_registration_path
+              = link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-sm'
+              &nbsp;
+            - else
+              = link_to "Log In", new_user_session_path, class: 'btn btn-info btn-sm'
+              or
+              = link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-sm'
+              &nbsp;
+
+    - if flash[:notice]
+      .alert.alert-success
+        %button.close{"data-dismiss" => "alert", :type => "button"} ×
+        = flash[:notice]
+    - elsif flash[:error]
+      .alert.alert-danger
+        %button.close{"data-dismiss" => "alert", :type => "button"} ×
+        = flash[:error]
+    - elsif flash[:alert]
+      .alert.alert-warning
+        %button.close{"data-dismiss" => "alert", :type => "button"} ×
+        = flash[:alert]
+    = yield
