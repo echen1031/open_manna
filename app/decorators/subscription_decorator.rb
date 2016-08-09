@@ -10,6 +10,10 @@ class SubscriptionDecorator < Draper::Decorator
     days.map { |d| Date::ABBR_DAYNAMES[d]}.join " / "
   end
 
+  def status
+    active == true ? "Active" : "Paused"
+  end
+
   private
 
   def integer_to_days

@@ -68,4 +68,11 @@ feature "User manages his or her subscription" do
     click_link "Delete"
     expect(Subscription.count).to eq 0
   end
+
+  scenario "pauses his subscription successfully" do
+    create(:subscription, user_id: user.id)
+    visit subscriptions_path
+    click_link "Pause"
+    expect(Subscription.first.active).to eq false
+  end
 end
