@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:edit, :update, :destroy]
+  before_action :set_subscription, only: [:edit, :update, :destroy, :toggle_active]
 
   def index
     @subscriptions = SubscriptionDecorator.decorate_collection(current_user.subscriptions)
@@ -41,6 +41,11 @@ class SubscriptionsController < ApplicationController
     @subscription.destroy
 
     flash[:notice] = "Successfully removed subscription"
+    redirect_to subscriptions_path
+  end
+
+  def toggle_active
+    @subscription.toggle!(:active)
     redirect_to subscriptions_path
   end
 

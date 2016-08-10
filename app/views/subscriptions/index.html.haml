@@ -11,6 +11,7 @@
             %th Phone Number
             %th Subscribed Days
             %th Time to Send
+            %th Status
             %th Action
         - @subscriptions.each do |sub|
           %tr
@@ -18,11 +19,14 @@
             %td= sub.phone_number
             %td= sub.subscribed_days
             %td= sub.readable_hour
+            %td= sub.status
             %td
-              =link_to "Edit", edit_subscription_path(sub), class: "btn btn-warning"
+              =link_to "Edit", edit_subscription_path(sub), class: "btn btn-success"
+              |
+              - if sub.active
+                =link_to "Pause Subscription", pause_subscription_path(sub), class: "btn btn-warning"
+              - else
+                =link_to "Make Active", pause_subscription_path(sub), class: "btn btn-primary"
               |
               =link_to "Delete", subscription_path(sub), :method => :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to remove this subscription?" }
-
-
-
-
+        

@@ -6,21 +6,41 @@ feature "User manages his or her subscription" do
     login_as user
   end
 
-  scenario "creates subscription successfully" do
-    visit subscriptions_path
-    click_link 'New Subscription'
-    fill_in 'Name', with: 'Morning Revival'
-    fill_in 'Phone number', with: '555-555-5555'
-    select('Eastern', :from => 'Time zone')
-    check 'subscription_send_monday'
-    select('7 am', :from => 'Select Time')
-    check 'subscription_send_monday'
-    click_button 'Create'
-    expect(Subscription.count).to eq 1
-    subscription = Subscription.first
-    expect(subscription.send_monday).to eq true
-    expect(subscription.user_id).to eq user.id
-    expect(subscription.name).to eq 'Morning Revival'
+  context "Creating subscription" do
+    scenario "creates monday subscription successfully" do
+      creates_a_monday_subscription
+      expect(Subscription.first.send_monday).to eq true
+    end
+
+    scenario "creates tuesday subscription successfully" do
+      creates_a_tuesday_subscription
+      expect(Subscription.first.send_tuesday).to eq true
+    end
+
+    scenario "creates wednesday subscription successfully" do
+      creates_a_wednesday_subscription
+      expect(Subscription.first.send_wednesday).to eq true
+    end
+
+    scenario "creates thursday subscription successfully" do
+      creates_a_thursday_subscription
+      expect(Subscription.first.send_thursday).to eq true
+    end
+
+    scenario "creates friday subscription successfully" do
+      creates_a_friday_subscription
+      expect(Subscription.first.send_friday).to eq true
+    end
+
+    scenario "creates saturday subscription successfully" do
+      creates_a_saturday_subscription
+      expect(Subscription.first.send_saturday).to eq true
+    end
+
+    scenario "creates sunday subscription successfully" do
+      creates_a_sunday_subscription
+      expect(Subscription.first.send_sunday).to eq true
+    end
   end
 
   scenario "sees all subscriptions that belongs to him" do
@@ -47,5 +67,12 @@ feature "User manages his or her subscription" do
     visit subscriptions_path
     click_link "Delete"
     expect(Subscription.count).to eq 0
+  end
+
+  scenario "pauses his subscription successfully" do
+    create(:subscription, user_id: user.id)
+    visit subscriptions_path
+    click_link "Pause"
+    expect(Subscription.first.active).to eq false
   end
 end
