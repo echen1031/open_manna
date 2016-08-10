@@ -1,4 +1,4 @@
-Open Manna is a Web app thath sends Bible verses via text messages.
+Open Manna is a web app that sends Bible verses via text messages.
 ==========
 
 
@@ -17,7 +17,7 @@ Make a copy of the following file and rename it `application.yml`
 application.example.yml
 ```
 
-Fill in the values for each environment variables
+Fill in the values for each environment variables respectively.
 
 ### Setup the database (and seed it)
 
