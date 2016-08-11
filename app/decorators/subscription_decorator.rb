@@ -5,6 +5,10 @@ class SubscriptionDecorator < Draper::Decorator
     send_hour == 99 ? "Random" : Time.parse("#{send_hour}:00").strftime("%l %P")
   end
 
+  def readable_phone_number
+    phone_number.phony_formatted(format: :international, spaces: '-')
+  end
+
   def subscribed_days
     days = integer_to_days
     days.map { |d| Date::ABBR_DAYNAMES[d]}.join " / "

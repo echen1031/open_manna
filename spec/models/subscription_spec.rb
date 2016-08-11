@@ -6,5 +6,12 @@ RSpec.describe Subscription, type: :model do
     it { should validate_presence_of :time_zone }
     it { should validate_presence_of :phone_number }
     it { should validate_presence_of :send_hour }
+
+    it "strips non_numerica_values from phone_number" do
+      non_numeric_values = "555-555-5555"
+      subscription = build(:subscription, phone_number: non_numeric_values)
+      subscription.save
+      expect(subscription.phone_number).to eq "+15555555555"
+    end
   end
 end

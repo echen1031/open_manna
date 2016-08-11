@@ -135,6 +135,10 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
     pg (0.18.4)
+    phony (2.15.28)
+    phony_rails (0.14.2)
+      activesupport (>= 3.0)
+      phony (~> 2.12)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -303,6 +307,7 @@ DEPENDENCIES
   launchy
   nexmo
   pg
+  phony_rails
   pry-byebug
   rails (= 4.2.5)
   rails_12factor
