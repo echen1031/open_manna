@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   resources :users
   resources :subscriptions do
     member do
-      get 'toggle_active', as: 'pause'
+      get 'pause_subscription', as: 'pause'
+      get 'activate_subscription', as: 'activate'
     end
   end
+
+  resources :verifications, only: [:edit, :update]
 
 
   get 'about' => 'welcome#about'

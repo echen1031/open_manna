@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:edit, :update, :destroy, :toggle_active]
+  before_action :set_subscription, only: [:edit, :update, :destroy, :activate_subscription, :pause_subscription]
 
   def index
     @subscriptions = SubscriptionDecorator.decorate_collection(current_user.subscriptions)
@@ -44,12 +44,34 @@ class SubscriptionsController < ApplicationController
     redirect_to subscriptions_path
   end
 
-  def toggle_active
+  def activate_subscription
+    @subscription.toggle!(:active) if verify_phone_number
+  end
+
+  def pause_subscription
     @subscription.toggle!(:active)
     redirect_to subscriptions_path
   end
 
   private
+
+  def start_verification
+    result = Nexmo::Client.new.send_verification_request(number: @subscription.phone_number, brand: "OpenManna")
+    if result['status'] == '0'
+      redirect_to edit_verification_path(id: result['request_id'])
+    else
+      redirect_to subscriptions_path
+      flash[:error] = 'Could not verify your number. Please contact support.'
+    end
+  end
+
+  def verify_phone_number
+    start_verification if requires_verification?
+  end
+
+  def requires_verification?
+    @subscription.active == false
+  end
 
   def subscription_params
     params.require(:subscription).permit(:send_monday, :send_tuesday, :send_wednesday, :send_thursday, :send_friday, :send_saturday, :send_sunday, :send_hour, :time_zone, :phone_number, :name)

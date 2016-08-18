@@ -24,9 +24,9 @@
               =link_to "Edit", edit_subscription_path(sub), class: "btn btn-success"
               |
               - if sub.active
-                =link_to "Pause Subscription", pause_subscription_path(sub), class: "btn btn-warning"
+                =link_to "Pause Subscription", pause_subscription_path(sub), class: "btn btn-warning", data: { confirm: "Are you sure you want to pause this subscription? You will have to authenticate this number again." }
               - else
-                =link_to "Make Active", pause_subscription_path(sub), class: "btn btn-primary"
+                =link_to "Activate", activate_subscription_path(sub), class: "btn btn-primary"
               |
               =link_to "Delete", subscription_path(sub), :method => :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to remove this subscription?" }
         

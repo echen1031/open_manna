@@ -15,7 +15,7 @@ class SubscriptionDecorator < Draper::Decorator
   end
 
   def status
-    active == true ? "Active" : "Paused"
+    active == true ? "Active" : "Inactive"
   end
 
   private
