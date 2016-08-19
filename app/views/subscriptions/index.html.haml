@@ -1,5 +1,10 @@
 .container
+  %br
   %h1 Subscriptions
+  %p
+    Create a new subscription by clicking the "New Subscription" button below. Your subscription will start once you activate it by clicking the "Activate" button. You will then need to enter a 4 digit PIN number to verify your phone number.
+
+  %br
   = link_to "New Subscription", new_subscription_path, class: "btn btn-success"
   %p
   %body
@@ -24,7 +29,7 @@
               =link_to "Edit", edit_subscription_path(sub), class: "btn btn-success"
               |
               - if sub.active
-                =link_to "Pause Subscription", pause_subscription_path(sub), class: "btn btn-warning", data: { confirm: "Are you sure you want to pause this subscription? You will have to authenticate this number again." }
+                =link_to "Pause Subscription", pause_subscription_path(sub), class: "btn btn-warning", data: { confirm: "Are you sure you want to pause this subscription? You will have to verify this number again." }
               - else
                 =link_to "Activate", activate_subscription_path(sub), class: "btn btn-primary"
               |
