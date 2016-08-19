@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160804211252) do
     t.datetime "updated_at",                     null: false
     t.string   "phone_number"
     t.string   "name"
-    t.boolean  "active",         default: false, null: false
+    t.boolean  "active",         default: true,  null: false
   end
 
   create_table "users", force: :cascade do |t|
