@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:edit, :update, :destroy, :activate_subscription, :pause_subscription]
+  before_action :set_subscription, only: [:edit, :update, :destroy, :activate, :pause]
 
   def index
     @subscriptions = SubscriptionDecorator.decorate_collection(current_user.subscriptions)
@@ -44,11 +44,11 @@ class SubscriptionsController < ApplicationController
     redirect_to subscriptions_path
   end
 
-  def activate_subscription
-    @subscription.toggle!(:active) if verify_phone_number
+  def activate
+    verify_phone_number
   end
 
-  def pause_subscription
+  def pause
     @subscription.toggle!(:active)
     redirect_to subscriptions_path
   end
@@ -58,7 +58,7 @@ class SubscriptionsController < ApplicationController
   def start_verification
     result = Nexmo::Client.new.send_verification_request(number: @subscription.phone_number, brand: "OpenManna")
     if result['status'] == '0'
-      redirect_to edit_verification_path(id: result['request_id'])
+      redirect_to edit_verification_path(id: result['request_id'], sub_id: @subscription.id)
     else
       redirect_to subscriptions_path
       flash[:error] = 'Could not verify your number. Please contact support.'

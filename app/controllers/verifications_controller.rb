@@ -9,11 +9,11 @@ class VerificationsController < ApplicationController
     )
 
     if confirmation['status'] == '0'
-      session[:verified] = true
+      Subscription.find(params[:sub_id]).toggle!(:active)
       redirect_to subscriptions_path
       flash[:notice] = "Subscription successfully Activated."
     else
-      redirect_to edit_verification_path(id: params[:id]), flash: { error: confirmation['error_text'] }
+      redirect_to edit_verification_path(id: params[:id], sub_id: params[:sub_id]), flash: { error: confirmation['error_text'] }
     end
   end
 end

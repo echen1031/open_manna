@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :users
   resources :subscriptions do
     member do
-      get 'pause_subscription', as: 'pause'
-      get 'activate_subscription', as: 'activate'
+      get 'pause', as: 'pause'
+      get 'activate', as: 'activate'
     end
   end
 
