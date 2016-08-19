@@ -70,9 +70,19 @@ feature "User manages his or her subscription" do
   end
 
   scenario "pauses his subscription successfully" do
-    create(:subscription, user_id: user.id)
+    create(:subscription, user_id: user.id, active: true)
     visit subscriptions_path
-    click_link "Pause"
+    click_link "Pause Subscription"
     expect(Subscription.first.active).to eq false
+  end
+
+  scenario "activates his subscription successfully" do
+    #stub_request(:post, "https://api.nexmo.com/verify/json").
+    #  with(:body => {"api_key"=>"60dbd52f", "api_secret"=>"aac3897e8090547d", "brand"=>"OpenManna", "number"=>"+15555555555"},
+    #  :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'ruby-nexmo/4.1.0/2.2.1'}).
+    #  to_return(:status => 200, :body => "", :headers => {})
+    #create(:subscription, user_id: user.id)
+    #visit subscriptions_path
+    #click_link "Activate"
   end
 end
