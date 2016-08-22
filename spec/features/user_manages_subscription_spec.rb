@@ -107,12 +107,24 @@ feature "User manages his or her subscription" do
   end
 
   scenario "activates his subscription successfully" do
-    #stub_request(:post, "https://api.nexmo.com/verify/json").
-    #  with(:body => {"api_key"=>"60dbd52f", "api_secret"=>"aac3897e8090547d", "brand"=>"OpenManna", "number"=>"+15555555555"},
-    #  :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'ruby-nexmo/4.1.0/2.2.1'}).
-    #  to_return(:status => 200, :body => "", :headers => {})
-    #create(:subscription, user_id: user.id)
-    #visit subscriptions_path
-    #click_link "Activate"
+    sub = create(:subscription, user_id: user.id)
+    nexmo_client = double("nexmo_client")
+    result = double("result")
+
+    allow(Nexmo::Client).to receive(:new).and_return(nexmo_client)
+    allow(nexmo_client).to receive(:send_verification_request).with(number: sub.phone_number, brand: "OpenManna").and_return(result)
+    allow(result).to receive(:[]).with("status").and_return("0")
+    allow(result).to receive(:[]).with("request_id").and_return("12345")
+
+    visit subscriptions_path
+    click_link "Activate"
+
+    expect(page).to have_content("Verification Code")
+    allow(nexmo_client).to receive(:check_verification_request).with(request_id: "12345", code: "1234").and_return(result)
+    fill_in "Code", with: "1234"
+    click_button "Verify"
+
+    sub.reload
+    expect(sub.active).to eq true
   end
 end
