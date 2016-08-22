@@ -17,4 +17,8 @@ class Subscription < ActiveRecord::Base
     current_day = Time.now.strftime("%A").downcase
     "send_#{current_day}"
   end
+
+  def over_limit?
+    Subscription.where(user_id: self.user_id).size >= 2
+  end
 end

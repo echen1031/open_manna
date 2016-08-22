@@ -11,7 +11,10 @@ class SubscriptionsController < ApplicationController
 
   def create
     @subscription = current_user.subscriptions.build(subscription_params)
-    if @subscription.save
+    if @subscription.over_limit?
+      flash[:error] = "Sorry, only two subscriptions per user are allowed at this time."
+      redirect_to subscriptions_path
+    elsif @subscription.save
       flash[:notice] = "Subscription created successfully."
       redirect_to subscriptions_path
     else
