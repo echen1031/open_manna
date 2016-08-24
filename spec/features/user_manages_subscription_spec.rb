@@ -117,7 +117,7 @@ feature "User manages his or her subscription" do
     allow(result).to receive(:[]).with("request_id").and_return("12345")
 
     visit subscriptions_path
-    click_link "Activate"
+    click_link "Verify"
 
     expect(page).to have_content("Verification Code")
     allow(nexmo_client).to receive(:check_verification_request).with(request_id: "12345", code: "1234").and_return(result)

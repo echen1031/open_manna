@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'start', as: 'start_verification', controller: 'verifications'
   resources :verifications, only: [:edit, :update]
 
 
