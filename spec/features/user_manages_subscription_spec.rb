@@ -108,23 +108,28 @@ feature "User manages his or her subscription" do
 
   scenario "activates his subscription successfully" do
     sub = create(:subscription, user_id: user.id)
-    nexmo_client = double("nexmo_client")
-    result = double("result")
-
-    allow(Nexmo::Client).to receive(:new).and_return(nexmo_client)
-    allow(nexmo_client).to receive(:send_verification_request).with(number: sub.phone_number, brand: "OpenManna").and_return(result)
-    allow(result).to receive(:[]).with("status").and_return("0")
-    allow(result).to receive(:[]).with("request_id").and_return("12345")
+    send_result = double("send_result")
+    request_id = "12345"
+    code = "5555"
+    allow(VerificationRequestSender).to receive(:new).with(sub.phone_number).and_return(send_result)
+    allow(send_result).to receive(:send_successful_request?).and_return true
+    allow(send_result).to receive(:request_id).and_return request_id
 
     visit subscriptions_path
     click_link "Verify"
 
+    expect(send_result).to have_received(:send_successful_request?)
+    expect(send_result).to have_received(:request_id)
     expect(page).to have_content("Verification Code")
-    allow(nexmo_client).to receive(:check_verification_request).with(request_id: "12345", code: "1234").and_return(result)
-    fill_in "Code", with: "1234"
+
+    check_result = double("check_result")
+    allow(VerificationRequestChecker).to receive(:new).with(request_id, code).and_return(check_result)
+    allow(check_result).to receive(:phone_number_confirmed?).and_return true
+    fill_in "Code", with: code
     click_button "Verify"
 
     sub.reload
+    expect(check_result).to have_received(:phone_number_confirmed?)
     expect(sub.active).to eq true
   end
 end

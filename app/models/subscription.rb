@@ -21,4 +21,8 @@ class Subscription < ActiveRecord::Base
   def over_limit?
     Subscription.where(user_id: self.user_id).size >= 2
   end
+
+  def needs_verification?
+    self.active == false
+  end
 end
