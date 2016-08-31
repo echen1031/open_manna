@@ -18,10 +18,6 @@ class Subscription < ActiveRecord::Base
     "send_#{current_day}"
   end
 
-  def over_limit?
-    Subscription.where(user_id: self.user_id).size >= 2
-  end
-
   def needs_verification?
     self.active == false
   end

@@ -1,5 +1,6 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:edit, :update, :destroy, :pause]
+  before_action :check_subscription_limit, only: [:create]
 
   def index
     @subscriptions = SubscriptionDecorator.decorate_collection(current_user.subscriptions)
@@ -11,10 +12,7 @@ class SubscriptionsController < ApplicationController
 
   def create
     @subscription = current_user.subscriptions.build(subscription_params)
-    if @subscription.over_limit?
-      flash[:error] = "Sorry, only two subscriptions per user are allowed at this time."
-      redirect_to subscriptions_path
-    elsif @subscription.save
+    if @subscription.save
       flash[:notice] = "Subscription created successfully."
       redirect_to subscriptions_path
     else
@@ -60,5 +58,12 @@ class SubscriptionsController < ApplicationController
 
   def set_subscription
     @subscription = Subscription.find(params[:id])
+  end
+
+  def check_subscription_limit
+    if current_user.over_subscription_limit?
+      flash[:error] = "Sorry, only two subscriptions per user are allowed at this time."
+      redirect_to subscriptions_path
+    end
   end
 end

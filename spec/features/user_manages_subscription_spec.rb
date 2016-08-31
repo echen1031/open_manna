@@ -54,6 +54,7 @@ feature "User manages his or her subscription" do
         check 'subscription_send_monday'
         click_button 'Create'
         expect(page).to have_content "Subscription created successfully."
+        expect(Subscription.count).to eq 2
       end
     end
 
@@ -69,6 +70,7 @@ feature "User manages his or her subscription" do
         check 'subscription_send_monday'
         click_button 'Create'
         expect(page).to have_content("Sorry, only two subscriptions per user are allowed at this time.")
+        expect(Subscription.count).to eq 2
       end
     end
   end
