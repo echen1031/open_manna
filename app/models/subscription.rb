@@ -17,8 +17,4 @@ class Subscription < ActiveRecord::Base
     current_day = Time.now.strftime("%A").downcase
     "send_#{current_day}"
   end
-
-  def needs_verification?
-    self.active == false
-  end
 end

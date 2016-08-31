@@ -1,7 +1,7 @@
 class VerificationsController < ApplicationController
   def start
     @subscription = Subscription.find(params[:sub_id])
-    start_verification if @subscription.needs_verification?
+    start_verification unless @subscription.active?
   end
 
   def start_verification
