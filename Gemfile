@@ -56,4 +56,5 @@ gem 'slim'
 gem 'draper'
 gem 'html2haml'
 gem 'haml-rails'
+gem 'phony_rails'
 

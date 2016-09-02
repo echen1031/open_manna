@@ -6,6 +6,7 @@ class Subscription < ActiveRecord::Base
 
   validates :user_id, :time_zone, :phone_number, :send_hour, presence: true
   validates :phone_number, phone_number_format: true
+  phony_normalize :phone_number, default_country_code: 'US'
 
   def no_sms_for_today
     self.send(current_day_in_words) == false

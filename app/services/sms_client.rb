@@ -10,4 +10,14 @@ class SMSClient
   def send_message(to:, text:)
     @client.send_message(from: @from, to: to, text: text)
   end
+
+  def send_verification(number)
+    @client.send_verification_request(number: number, brand: "OpenManna")
+  end
+
+  def check_verification(request_id, code)
+    @client.check_verification_request(request_id: request_id,
+                                           code: code
+                                          )
+  end
 end

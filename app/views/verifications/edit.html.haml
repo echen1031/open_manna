@@ -1,0 +1,10 @@
+.container
+  %br
+  %h3 Enter Your OpenManna Verification Code
+  = form_tag verification_path(id: params[:id]), method: :put do
+    .form-group
+      = label_tag :code
+      %br/
+      = number_field_tag :code, class: "form-control"
+      = hidden_field_tag "sub_id", params[:sub_id]
+    = submit_tag 'Verify', class: "btn btn-primary"

@@ -1,5 +1,10 @@
 .container
+  %br
   %h1 Subscriptions
+  %p
+    Create a new subscription by clicking the "New Subscription" button below. To activate your subscription, you must first verify your phone number by clicking on the "Verify" button. You will then need to enter a 4 digit PIN number to complete the process.
+
+  %br
   = link_to "New Subscription", new_subscription_path, class: "btn btn-success"
   %p
   %body
@@ -16,7 +21,7 @@
         - @subscriptions.each do |sub|
           %tr
             %td= sub.name
-            %td= sub.phone_number
+            %td= sub.readable_phone_number
             %td= sub.subscribed_days
             %td= sub.readable_hour
             %td= sub.status
@@ -24,9 +29,9 @@
               =link_to "Edit", edit_subscription_path(sub), class: "btn btn-success"
               |
               - if sub.active
-                =link_to "Pause Subscription", pause_subscription_path(sub), class: "btn btn-warning"
+                =link_to "Pause Subscription", pause_subscription_path(sub), class: "btn btn-warning", data: { confirm: "Are you sure you want to pause this subscription? You will have to verify this number again." }
               - else
-                =link_to "Make Active", pause_subscription_path(sub), class: "btn btn-primary"
+                =link_to "Verify", start_verification_path(sub_id: sub.id), class: "btn btn-primary"
               |
               =link_to "Delete", subscription_path(sub), :method => :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to remove this subscription?" }
         

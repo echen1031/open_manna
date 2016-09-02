@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :subscriptions
+
+  def over_subscription_limit?
+    subscriptions.size >= 2
+  end
 end
