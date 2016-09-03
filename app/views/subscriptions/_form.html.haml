@@ -3,7 +3,7 @@
     .input.email.optional.user_email
       = f.input :name
       = f.input :phone_number, placeholder: '1-555-555-5555 (US number only)'
-      = f.input :time_zone, collection: ActiveSupport::TimeZone.us_zones
+      = f.collection_select :time_zone, ActiveSupport::TimeZone.us_zones, :name, :to_s, {prompt: "Select Your Time Zone"}, {class: "form-control"}
   %br/
   %table.table.table-bordered.table-striped.table-condensed.checkbox_days
     %label.control-label Select Days
