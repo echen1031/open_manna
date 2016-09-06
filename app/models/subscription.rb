@@ -13,8 +13,9 @@ class Subscription < ActiveRecord::Base
   end
 
   def current_day_in_words
-    Time.zone = self.time_zone
-    current_day = Time.now.strftime("%A").downcase
-    "send_#{current_day}"
+    Time.use_zone(self.time_zone) do
+      current_day = Time.zone.now.strftime("%A").downcase
+      return "send_#{current_day}"
+    end
   end
 end
