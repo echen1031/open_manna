@@ -54,7 +54,7 @@ module Features
       click_link 'New Subscription'
       fill_in 'Name', with: 'Morning Revival'
       fill_in 'Phone number', with: '555-555-5555'
-      select('Eastern', :from => 'Time zone')
+      select('Eastern', :from => 'subscription[time_zone]')
       select('7 am', :from => 'Select Time')
     end
   end
