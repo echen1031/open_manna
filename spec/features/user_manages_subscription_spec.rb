@@ -49,7 +49,7 @@ feature "User manages his or her subscription" do
         click_link 'New Subscription'
         fill_in 'Name', with: 'Morning Revival'
         fill_in 'Phone number', with: '555-555-5555'
-        select('Eastern', :from => 'Time zone')
+        select('Eastern', :from => 'subscription[time_zone]')
         select('7 am', :from => 'Select Time')
         check 'subscription_send_monday'
         click_button 'Create'
@@ -65,7 +65,7 @@ feature "User manages his or her subscription" do
         click_link 'New Subscription'
         fill_in 'Name', with: 'Morning Revival'
         fill_in 'Phone number', with: '555-555-5555'
-        select('Eastern', :from => 'Time zone')
+        select('Eastern', :from => 'subscription[time_zone]')
         select('7 am', :from => 'Select Time')
         check 'subscription_send_monday'
         click_button 'Create'
@@ -88,7 +88,7 @@ feature "User manages his or her subscription" do
     visit subscriptions_path
     click_link "Edit"
     fill_in "Name", with: "Test"
-    select('Eastern', :from => 'Time zone')
+    select('Eastern', :from => 'subscription[time_zone]')
     click_button "Update Subscription"
     subscription.reload
     expect(subscription.name).to eq "Test"

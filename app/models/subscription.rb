@@ -1,7 +1,7 @@
 class Subscription < ActiveRecord::Base
   belongs_to :user
-  EARLIEST_HOUR = 5
-  LASTEST_HOUR = 23
+  EARLIEST_HOUR = 6
+  LASTEST_HOUR = 21
   RANDOM_HOUR = 99
 
   validates :user_id, :time_zone, :phone_number, :send_hour, presence: true
@@ -13,8 +13,9 @@ class Subscription < ActiveRecord::Base
   end
 
   def current_day_in_words
-    Time.zone = self.time_zone
-    current_day = Time.now.strftime("%A").downcase
-    "send_#{current_day}"
+    Time.use_zone(self.time_zone) do
+      current_day = Time.zone.now.strftime("%A").downcase
+      return "send_#{current_day}"
+    end
   end
 end
