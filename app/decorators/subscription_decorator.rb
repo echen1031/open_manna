@@ -12,7 +12,11 @@ class SubscriptionDecorator < Draper::Decorator
   def subscribed_days
     days = integer_to_days
     days_string = days.map { |d| Date::ABBR_DAYNAMES[d]}.join " / "
-    days_string.sub! 'Sun', 'LD'
+    if days_string.include? 'Sun'
+      days_string.sub! 'Sun', 'LD'
+    else
+      days_string
+    end
   end
 
   def status
