@@ -2,6 +2,6 @@ class VerseDecorator < Draper::Decorator
   delegate_all
 
   def text_message
-    reference+' - '+text
+    reference+' - '+text+' - OpenManna'
   end
 end
