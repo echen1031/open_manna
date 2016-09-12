@@ -8,7 +8,7 @@ feature "user manages account" do
 
   scenario "updates user account successfully" do
     visit root_path
-    click_link user.email
+    click_link "Profile"
     fill_in 'Email', with: 'user@example.com'
     fill_in 'Current password', with: user.password
     click_button 'Update'
