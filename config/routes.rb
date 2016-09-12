@@ -13,9 +13,7 @@ Rails.application.routes.draw do
   get 'start', as: 'start_verification', controller: 'verifications'
   resources :verifications, only: [:edit, :update]
 
-
-  get 'about' => 'welcome#about'
-
   root to: 'welcome#index'
   mount Sidekiq::Web, at: '/sidekiq'
+  match '*path', via: :all, to: redirect('/404')
 end
