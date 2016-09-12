@@ -58,4 +58,5 @@ gem 'html2haml'
 gem 'haml-rails'
 gem 'phony_rails'
 gem 'puma'
+gem "letter_opener", :group => :development
 
