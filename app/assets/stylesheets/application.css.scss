@@ -12,12 +12,17 @@
  *
  *= require_tree .
  *= require_self
+ *= require mobile_friendly
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body { 
+  padding-top: 50px; 
+}
+
 .user-info {
-  margin-top: 9px;
+  margin-top: 5px;
 }
 
 .nav {
