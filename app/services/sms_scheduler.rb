@@ -1,6 +1,6 @@
 class SmsScheduler
   def self.set_daily_sms_job
-    Subscription.all.each do |sub|
+    Subscription.all.active.each do |sub|
       next if sub.no_sms_for_today
       @time_to_send = (sub.send_hour == 99 ) ? (8..20).to_a.sample : sub.send_hour
       @sub = sub
