@@ -8,6 +8,8 @@ class Subscription < ActiveRecord::Base
   validates :phone_number, phone_number_format: true
   phony_normalize :phone_number, default_country_code: 'US'
 
+  scope :active, -> { where(active: true) }
+
   def no_sms_for_today
     self.send(current_day_in_words) == false
   end

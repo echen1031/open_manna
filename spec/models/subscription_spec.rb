@@ -14,4 +14,12 @@ RSpec.describe Subscription, type: :model do
       expect(subscription.phone_number).to eq "+15555555555"
     end
   end
+
+  describe "#active" do
+    it "takes all the active subscriptions" do
+      create(:inactive_subscription)
+      create(:subscription)
+      expect(Subscription.active.size).to eq 1
+    end
+  end
 end

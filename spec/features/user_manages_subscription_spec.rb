@@ -109,7 +109,7 @@ feature "User manages his or her subscription" do
   end
 
   scenario "activates his subscription successfully" do
-    sub = create(:subscription, user_id: user.id)
+    sub = create(:inactive_subscription, user_id: user.id)
     send_result = double("send_result")
     request_id = "12345"
     code = "5555"
