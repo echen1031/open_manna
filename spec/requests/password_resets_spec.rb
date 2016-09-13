@@ -17,7 +17,7 @@ feature "user resets password" do
   scenario "resets password successfully" do
     user = create(:user)
     email = user.email
-    new_password = "awesome"
+    new_password = "awesome123"
 
     visit root_path
     click_link "Log In"
@@ -28,8 +28,8 @@ feature "user resets password" do
     link = links_in_email(last_email).first
     visit link
 
-    fill_in "New password", :with => new_password
-    fill_in "Confirm your new password", :with => new_password
+    fill_in "New password", with: new_password
+    fill_in "Confirm your new password", with: new_password
     click_button "Change my password"
     user.reload
 
