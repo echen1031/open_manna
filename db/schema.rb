@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804211252) do
+ActiveRecord::Schema.define(version: 20160914025933) do
+
+  create_table "subscription_verses", force: :cascade do |t|
+    t.integer  "subscription_id", null: false
+    t.integer  "verse_id",        null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "subscription_verses", ["subscription_id"], name: "index_subscription_verses_on_subscription_id"
+  add_index "subscription_verses", ["verse_id"], name: "index_subscription_verses_on_verse_id"
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
