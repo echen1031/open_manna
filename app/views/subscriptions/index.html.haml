@@ -31,7 +31,7 @@
         Remember, your subscription won't start until you verify your phone number.
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Later
-        = link_to 'Verify Now', start_verification_path(sub_id: @sub_id), :class => "btn btn-primary", :remote => true
+        = link_to 'Verify Now', start_verification_path(sub_id: @sub_id), :class => "btn btn-primary"
 
 - if flash[:activation_modal]
   :javascript
