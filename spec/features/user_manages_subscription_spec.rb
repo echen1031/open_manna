@@ -53,7 +53,6 @@ feature "User manages his or her subscription" do
         select('7 am', :from => 'Select Time')
         check 'subscription_send_monday'
         click_button 'Create'
-        save_and_open_page
         expect(page).to have_content "Subscription created successfully."
         expect(Subscription.count).to eq 2
       end
