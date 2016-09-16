@@ -16,11 +16,6 @@
   %body
     = render "table", subscriptions: @subscriptions
 
-:javascript
-  debugger;
-  $('.activation-modal').show('show');
-
-%button.btn.btn-primary{"data-target" => ".activation-modal", "data-toggle" => "modal", :type => "button"} Small modal
 
 .modal.fade.activation-modal{"aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog.modal-sm{:role => "document"}
@@ -36,3 +31,7 @@
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Later
         %button.btn.btn-primary{:type => "button"} Verify Now
 
+- if flash[:activation_modal]
+  :javascript
+    debugger;
+    $('.activation-modal').modal('show');
