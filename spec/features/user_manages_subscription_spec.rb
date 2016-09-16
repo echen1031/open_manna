@@ -53,6 +53,7 @@ feature "User manages his or her subscription" do
         select('7 am', :from => 'Select Time')
         check 'subscription_send_monday'
         click_button 'Create'
+        save_and_open_page
         expect(page).to have_content "Subscription created successfully."
         expect(Subscription.count).to eq 2
       end
@@ -95,7 +96,7 @@ feature "User manages his or her subscription" do
   end
 
   scenario "deletes his subscription successfully" do
-    create(:subscription, user_id: user.id)
+    create(:subscription, user_id: user.id, active: false)
     visit subscriptions_path
     click_link "Delete"
     expect(Subscription.count).to eq 0
