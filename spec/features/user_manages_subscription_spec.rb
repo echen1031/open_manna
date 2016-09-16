@@ -95,7 +95,7 @@ feature "User manages his or her subscription" do
   end
 
   scenario "deletes his subscription successfully" do
-    create(:subscription, user_id: user.id)
+    create(:subscription, user_id: user.id, active: false)
     visit subscriptions_path
     click_link "Delete"
     expect(Subscription.count).to eq 0
