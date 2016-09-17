@@ -17,11 +17,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url(/assets/SourceSansPro-Regular.ttf) format("truetype");
+}
+
 .jumbotron{
-  background-image:url("https://s3.amazonaws.com/openmanna/OMBanner500.jpg") ;
+  background-image:url("https://s3.amazonaws.com/openmanna/LeftAlignedBanner500x.jpg") ;
   min-height: 500px;
   background-repeat: no-repeat;
   color: #E6E7E8;
+  font-family: "Source Sans Pro";
+  padding-top: 320px;
 }
 
 body { 
