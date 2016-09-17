@@ -17,6 +17,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.jumbotron{
+  background-image:url("https://s3.amazonaws.com/openmanna/OMBanner500.jpg") ;
+  min-height: 500px;
+  background-repeat: no-repeat;
+  color: #E6E7E8;
+}
+
 body { 
   padding-top: 50px; 
 }
@@ -28,6 +35,7 @@ body {
 .nav {
   margin-top: 5px;
 }
+
 
 .bs-callout {
     padding: 20px;
