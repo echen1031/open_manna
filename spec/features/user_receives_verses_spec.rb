@@ -3,7 +3,8 @@ require 'rails_helper'
 feature "User receives verse from openmanna" do
   let(:sms_client) { double }
   let(:response) { double }
-  let(:success) { '0' }
+  let(:nexmo_response) { double }
+  let(:status_code) { "0" }
 
   scenario "successfully" do
     pending
@@ -15,8 +16,12 @@ feature "User receives verse from openmanna" do
     Sidekiq::Testing.inline! do
       expect(SMSClient).to receive(:new).and_return(sms_client)
       expect(sms_client).to receive(:send_message).with(to: phone_number, text: verse_text).and_return(response)
-      expect(response).to receive(:[]).with('status').and_return(success)
-      SmsScheduler.set_daily_sms_job
+      expect(nexmo_response).to receive(:status_code).and_return(status_code)
+      expect(nexmo_response).to receive(:status_text).and_return("text")
+      expect(nexmo_response).to receive(:message_id).and_return("12345")
+      expect(nexmo_response).to receive(:message_id).and_return("12345")
+      expect(NexmoResponseManager).to receive(:new).and_return(nexmo_response)
+      SMSScheduler.set_daily_sms_job
       expect(SubscriptionVerse.count).to eq 1
 
     end

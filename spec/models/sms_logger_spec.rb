@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SmsClientLogger, type: :model do
+RSpec.describe SMSClientLogger, type: :model do
   describe "Validations" do
     it { should validate_presence_of :status_code }
     it { should validate_presence_of :status_text }
