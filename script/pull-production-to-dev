@@ -1,1 +1,6 @@
 #!/bin/bash
+
+heroku pg:backups capture -a openmanna
+curl -o db.dump `heroku pg:backups public-url -a openmanna`
+pg_restore --verbose --clean --no-acl --no-owner -d openmanna_development db.dump
+rm db.dump
