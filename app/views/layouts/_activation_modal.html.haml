@@ -1,0 +1,13 @@
+.modal.fade.bs-example-modal-sm{"aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-sm{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title
+          Want to Activate Your Subscription Now?
+      .modal-body
+        Remember, your subscription won't start until you activate it.
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Later
+        %button.btn.btn-primary{:type => "button"} Activate Now

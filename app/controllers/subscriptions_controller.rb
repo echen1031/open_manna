@@ -14,7 +14,7 @@ class SubscriptionsController < ApplicationController
     @subscription = current_user.subscriptions.build(subscription_params)
     if @subscription.save
       flash[:notice] = "Subscription created successfully."
-      redirect_to subscriptions_path
+      redirect_to subscriptions_path, flash: { activation_modal: true, sub_id: @subscription.id }
     else
       flash[:error] = "Subscription could not be saved."
       render action: :new

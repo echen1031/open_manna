@@ -6,7 +6,7 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   has_many :verses, through: :subscription_verses
 
-  validates :user_id, :time_zone, :phone_number, :send_hour, presence: true
+  validates :name, :user_id, :time_zone, :phone_number, :send_hour, presence: true
   validates :phone_number, phone_number_format: true
   phony_normalize :phone_number, default_country_code: 'US'
 
