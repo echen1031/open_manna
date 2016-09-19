@@ -6,11 +6,11 @@ class DailySmsWorker
     phone_number = Subscription.find(subscription_id).phone_number
     bible_verse = VerseDecorator.decorate(Verse.find(verse_id))
     response = SMSClient.new.send_message(to: phone_number, text: bible_verse.text_message)
-    if response['status'] == '0'
+    nexmo_response = NexmoResponseManager.new(response)
+    SmsClientLogger.create(status_code: nexmo_response.status_code, status_text: nexmo_response.status_text, message_id: nexmo_response.message_id, to: nexmo_response.to)
+
+    if nexmo_response.successful
       SubscriptionVerse.create(subscription_id: subscription_id, verse_id: verse_id)
-      SmsClientLogger.create(status_code: response['status'], status_text: "Success", message_id: response['message-id'], to: response['to'])
-    else
-      SmsClientLogger.create(status_code: response['status'], status_text: "Error: #{response['error-text']}", message_id: "N/A", to: "N/A")
     end
   end
 end
