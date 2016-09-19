@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914025933) do
+ActiveRecord::Schema.define(version: 20160919022643) do
+
+  create_table "sms_client_loggers", force: :cascade do |t|
+    t.string   "status_code"
+    t.string   "status_text"
+    t.string   "message_id"
+    t.string   "to"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "subscription_verses", force: :cascade do |t|
     t.integer  "subscription_id", null: false
@@ -38,7 +47,7 @@ ActiveRecord::Schema.define(version: 20160914025933) do
     t.datetime "updated_at",                     null: false
     t.string   "phone_number"
     t.string   "name"
-    t.boolean  "active",         default: true,  null: false
+    t.boolean  "active",         default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|

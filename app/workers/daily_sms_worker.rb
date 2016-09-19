@@ -7,11 +7,10 @@ class DailySmsWorker
     bible_verse = VerseDecorator.decorate(Verse.find(verse_id))
     response = SMSClient.new.send_message(to: phone_number, text: bible_verse.text_message)
     if response['status'] == '0'
-      puts "Sent message #{response['message-id']}"
-
-      puts "Remaining balance is #{response['remaining-balance']}"
+      SubscriptionVerse.create(subscription_id: subscription_id, verse_id: verse_id)
+      SmsClientLogger.create(status_code: response['status'], status_text: "Success", message_id: response['message-id'], to: response['to'])
     else
-      puts "Error: #{response['error-text']}"
+      SmsClientLogger.create(status_code: response['status'], status_text: "Error: #{response['error-text']}", message_id: "N/A", to: "N/A")
     end
   end
 end
