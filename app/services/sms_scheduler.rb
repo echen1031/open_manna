@@ -1,4 +1,4 @@
-class SmsScheduler
+class SMSScheduler
   def self.set_daily_sms_job
     Subscription.all.active.each do |sub|
       next if sub.no_sms_for_today

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe SmsScheduler do
+describe SMSScheduler do
   let(:monday_subscription) { create(:subscription, send_monday: true) }
   let(:tuesday_subscription) { create(:subscription, send_tuesday: true) }
 
@@ -18,7 +18,7 @@ describe SmsScheduler do
       verse = double(:verse, id: 1)
       allow(Verse).to receive(:random).and_return(verse)
 
-      SmsScheduler.set_daily_sms_job
+      SMSScheduler.set_daily_sms_job
 
       expect(DailySmsWorker.jobs.size).to eq 1
     end
@@ -29,7 +29,7 @@ describe SmsScheduler do
       verse = double(:verse, id: 1)
       allow(Verse).to receive(:random).and_return(verse)
 
-      SmsScheduler.set_daily_sms_job
+      SMSScheduler.set_daily_sms_job
 
       expect(DailySmsWorker.jobs.size).to eq 0
     end
