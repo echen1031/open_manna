@@ -20,7 +20,7 @@ describe SMSScheduler do
 
       SMSScheduler.set_daily_sms_job
 
-      expect(DailySmsWorker.jobs.size).to eq 1
+      expect(DailySMSWorker.jobs.size).to eq 1
     end
 
     it "does not enques text message job on the wrong day" do
@@ -31,7 +31,7 @@ describe SMSScheduler do
 
       SMSScheduler.set_daily_sms_job
 
-      expect(DailySmsWorker.jobs.size).to eq 0
+      expect(DailySMSWorker.jobs.size).to eq 0
     end
   end
 end

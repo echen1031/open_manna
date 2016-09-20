@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe DailySmsWorker do
+describe DailySMSWorker do
   let(:sms_client) { double }
   let(:response) { double }
   let(:success) { '0' }
@@ -22,7 +22,7 @@ describe DailySmsWorker do
       expect(SubscriptionVerse).to receive(:create).with(subscription_id: subscription.id, verse_id: verse.id)
       expect(SmsClientLogger).to receive(:create).with(status_code: status_code, status_text: status_text, message_id: msg_id, to: to)
 
-      DailySmsWorker.new.perform(subscription.id, verse.id)
+      DailySMSWorker.new.perform(subscription.id, verse.id)
     end
   end
 end
