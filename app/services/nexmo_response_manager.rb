@@ -8,6 +8,10 @@ class NexmoResponseManager
     status_code == "0"
   end
 
+  def throttled
+    status_code == "1"
+  end
+
   def status_code
     @nexmo_response['status']
   end

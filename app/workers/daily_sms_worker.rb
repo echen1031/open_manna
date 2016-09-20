@@ -1,4 +1,4 @@
-class DailySmsWorker
+class DailySMSWorker
   include Sidekiq::Worker
 
   def perform(subscription_id, verse_id)
@@ -11,6 +11,8 @@ class DailySmsWorker
 
     if nexmo_response.successful
       SubscriptionVerse.create(subscription_id: subscription_id, verse_id: verse_id)
+    elsif nexmo_response.throttled
+      DailySMSWorker.perform_in(2.seconds, subscription_id, verse_id)
     end
   end
 end
