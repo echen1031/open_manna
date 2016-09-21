@@ -8,5 +8,6 @@ ActiveAdmin.register SubscriptionVerse do
     column :verse_id do |verse|
       Verse.find(verse).reference
     end
+    column :created_at
   end
 end
