@@ -60,4 +60,5 @@ gem 'haml-rails'
 gem 'phony_rails'
 gem 'puma'
 gem "letter_opener", :group => :development
+gem 'activeadmin', '~> 1.0.0.pre4'
 

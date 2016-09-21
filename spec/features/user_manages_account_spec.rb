@@ -3,7 +3,7 @@ require 'rails_helper'
 feature "user manages account" do
   let!(:user) { create(:user) }
   before(:each) do
-    login_as user
+    login_as(user, :scope => :user)
   end
 
   scenario "updates user account successfully" do

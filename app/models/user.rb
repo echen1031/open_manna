@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   def over_subscription_limit?
     subscriptions.size >= 2
   end
+
+  def admin?
+    self.email == AdminUser.first.email
+  end
 end
