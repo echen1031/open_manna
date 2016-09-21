@@ -3,7 +3,7 @@ require 'rails_helper'
 feature "User manages his or her subscription" do
   let(:user) { create(:user) }
   before(:each) do
-    login_as user
+    login_as(user, :scope => :user)
   end
 
   context "Creating subscription" do
