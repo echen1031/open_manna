@@ -1,8 +1,4 @@
 class Subscription < ActiveRecord::Base
-  EARLIEST_HOUR = 6
-  LASTEST_HOUR = 21
-  RANDOM_HOUR = 99
-
   belongs_to :user
   has_many :subscription_verses
   has_many :verses, through: :subscription_verses
