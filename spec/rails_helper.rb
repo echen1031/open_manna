@@ -24,4 +24,5 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.include MailerMacros
   config.before(:each) { reset_email }
+  config.include Devise::TestHelpers, :type => :controller
 end

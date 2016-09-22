@@ -17,6 +17,10 @@ class Subscription < ActiveRecord::Base
     self.send(current_day_in_words) == false
   end
 
+  def new_subscription?
+    (self.verses.empty?) && (self.user.number_of_verses_received == 0)
+  end
+
   def current_day_in_words
     Time.use_zone(self.time_zone) do
       current_day = Time.zone.now.strftime("%A").downcase

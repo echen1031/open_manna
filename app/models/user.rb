@@ -15,4 +15,12 @@ class User < ActiveRecord::Base
   def admin?
     self.email == AdminUser.first.email
   end
+
+  def number_of_subscriptions_owned
+    self.subscriptions.size
+  end
+
+  def number_of_verses_received
+    self.verses.size
+  end
 end
