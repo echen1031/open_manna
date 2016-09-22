@@ -12,7 +12,8 @@ class DailySMSWorker
     if nexmo_response.successful
       SubscriptionVerse.create(subscription_id: subscription_id, verse_id: verse_id)
     elsif nexmo_response.throttled
-      DailySMSWorker.perform_in(2.seconds, subscription_id, verse_id)
+      random_interval = rand(2..60).seconds
+      DailySMSWorker.perform_in(random_interval, subscription_id, verse_id)
     end
   end
 end
