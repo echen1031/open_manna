@@ -1,9 +1,7 @@
 class Subscription < ActiveRecord::Base
-  EARLIEST_HOUR = 6
-  LASTEST_HOUR = 21
-  RANDOM_HOUR = 99
-
   belongs_to :user
+  has_many :subscription_verses
+  has_many :verses, through: :subscription_verses
 
   validates :name, :user_id, :time_zone, :phone_number, :send_hour, presence: true
   validates :phone_number, phone_number_format: true
@@ -13,6 +11,10 @@ class Subscription < ActiveRecord::Base
 
   def no_sms_for_today
     self.send(current_day_in_words) == false
+  end
+
+  def new_subscription?
+    self.user.number_of_verses_received == 0
   end
 
   def current_day_in_words

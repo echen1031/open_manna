@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :subscriptions
+  has_many :subscription_verses
+  has_many :verses, through: :subscription_verses
 
   def over_subscription_limit?
     subscriptions.size >= 2
@@ -12,5 +14,13 @@ class User < ActiveRecord::Base
 
   def admin?
     self.email == AdminUser.first.email
+  end
+
+  def number_of_subscriptions_owned
+    self.subscriptions.size
+  end
+
+  def number_of_verses_received
+    self.verses.size
   end
 end
