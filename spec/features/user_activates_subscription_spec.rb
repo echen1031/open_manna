@@ -1,6 +1,14 @@
 require 'rails_helper'
 
-feature "User activates subscription" do
+feature "User activates a subscription having already being an user" do
+  let(:user) { create(:user) }
+  before(:each) do
+    login_as(user, :scope => :user)
+    verse = create(:verse)
+    subscription = create(:subscription, user_id: user.id)
+    create(:subscription_verse, user_id: user.id, verse_id: verse.id, subscription_id: subscription.id)
+  end
+
   scenario "activates his subscription successfully" do
     sub = create(:inactive_subscription, user_id: user.id)
     send_result = double("send_result")
