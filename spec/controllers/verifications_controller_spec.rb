@@ -16,9 +16,10 @@ describe VerificationsController, type: :controller do
       it "sends a welcome text" do
         expect(VerificationRequestChecker).to receive(:new).and_return(result)
         expect(result).to receive(:phone_number_confirmed?).and_return(true)
+        expect(SMSClient).to receive(:new).and_return(nexmo_client)
+        expect(nexmo_client).to receive(:send_welcome_message).with(to: sub.phone_number)
         put :update, {:id => request_id, :code => verification_code, :sub_id => sub.id}
         expect(Subscription.first.active).to eq true
-        expect(SMSClient).to receive(:new).and_return(nexmo_client)
       end
     end
   end

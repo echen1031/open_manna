@@ -1,11 +1,12 @@
 class SMSClient
   require 'nexmo'
+  WELCOME_TEXT = "Welcome to OpenManna! You will be receiving scheduled verses from this number. Enjoy! - OpenManna.com"
 
   def initialize
     @client = Nexmo::Client.new(key: ENV['NEXMO_API_KEY'],
                                     secret: ENV['NEXMO_API_SECRET'])
     @from = ENV['NEXMO_PHONE']
-    @welcome_text = Subscription::WELCOME_TEXT
+    @welcome_text = WELCOME_TEXT
   end
 
   def send_message(to:, text:)

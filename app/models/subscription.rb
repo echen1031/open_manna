@@ -14,7 +14,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def new_subscription?
-    (self.verses.empty?) && (self.user.number_of_verses_received == 0)
+    self.user.number_of_verses_received == 0
   end
 
   def current_day_in_words
