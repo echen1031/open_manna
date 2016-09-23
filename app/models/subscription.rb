@@ -1,6 +1,6 @@
 class Subscription < ActiveRecord::Base
   belongs_to :user
-  has_many :subscription_verses
+  has_many :subscription_verses, dependent: :destroy
   has_many :verses, through: :subscription_verses
 
   validates :name, :user_id, :time_zone, :phone_number, :send_hour, presence: true
