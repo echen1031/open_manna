@@ -59,3 +59,14 @@
         %button.close{"data-dismiss" => "alert", :type => "button"} ×
         = flash[:alert]
     = yield
+  :javascript
+    var jumboHeight = $('.jumbotron').outerHeight();
+    function parallax(){
+        var scrolled = $(window).scrollTop();
+        $('.bg').css('height', (jumboHeight-scrolled) + 'px');
+    }
+
+    $(window).scroll(function(e){
+        parallax();
+    });
+
