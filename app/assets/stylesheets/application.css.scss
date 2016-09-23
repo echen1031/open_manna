@@ -21,7 +21,16 @@
   color: #E6E7E8;
   font-family: "Source Sans Pro";
   padding-top: 300px;
+  margin-bottom: -30px;
   background: image-url("LogoCenteredHigher.png") no-repeat center center;
+}
+
+
+.album {
+  min-height: 50px; /* Can be removed; just added for demo purposes */
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: #f7f7f7;
 }
 
 body { 
