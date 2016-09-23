@@ -24,10 +24,11 @@ group :test do
   gem 'faker'
   gem 'shoulda-matchers'
   gem 'rspec-sidekiq'
+  gem 'database_cleaner'
 end
 
 group :development do
-  gem 'sqlite3'
+  gem 'pg'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
@@ -59,4 +60,5 @@ gem 'haml-rails'
 gem 'phony_rails'
 gem 'puma'
 gem "letter_opener", :group => :development
+gem 'activeadmin', '~> 1.0.0.pre4'
 

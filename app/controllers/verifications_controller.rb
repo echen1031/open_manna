@@ -21,7 +21,9 @@ class VerificationsController < ApplicationController
     result = VerificationRequestChecker.new(params[:id], params[:code])
 
     if result.phone_number_confirmed?
-      Subscription.find(params[:sub_id]).toggle!(:active)
+      sub = Subscription.find(params[:sub_id])
+      sub.toggle!(:active)
+      SMSClient.new.send_welcome_message(to: sub.phone_number) if sub.new_subscription?
       redirect_to subscriptions_path
       flash[:notice] = "Subscription successfully Activated."
     else
