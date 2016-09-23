@@ -94,11 +94,21 @@ feature "User manages his or her subscription" do
     expect(subscription.name).to eq "Test"
   end
 
-  scenario "deletes his subscription successfully" do
-    create(:subscription, user_id: user.id, active: false)
-    visit subscriptions_path
-    click_link "Delete"
-    expect(Subscription.count).to eq 0
+  context "Subscription Deletion" do
+    scenario "successful" do
+      create(:subscription, user_id: user.id, active: false)
+      visit subscriptions_path
+      click_link "Delete"
+      expect(Subscription.count).to eq 0
+    end
+    scenario "successful in deleting subscription verses belonging to the subscription" do
+      sub = create(:subscription, user_id: user.id, active: false)
+      create(:subscription_verse, subscription_id: sub.id, user_id: user.id)
+      visit subscriptions_path
+      click_link "Delete"
+      expect(Subscription.count).to eq 0
+      expect(SubscriptionVerse.count).to eq 0
+    end
   end
 
   scenario "pauses his subscription successfully" do

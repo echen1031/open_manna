@@ -6,7 +6,7 @@ ActiveAdmin.register SMSClientLogger do
     column :to
     column :created_at do |log|
       Time.use_zone("Eastern Time (US & Canada)") do
-        log.created_at.strftime("%m/%d/%Y at %l:%M %p (est)")
+        log.created_at.strftime("%m/%d/%Y at %l:%M %p")
       end
     end
   end

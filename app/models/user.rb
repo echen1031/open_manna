@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :subscriptions
-  has_many :subscription_verses
+  has_many :subscriptions, dependent: :destroy
+  has_many :subscription_verses, dependent: :destroy
   has_many :verses, through: :subscription_verses
 
   def over_subscription_limit?
