@@ -7,52 +7,49 @@
     %h3
       #{link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary'} today!
   .pull-right
-    /TODO:facebook icon goes here
+    %a{:href => "https://www.facebook.com/dialog/feed?link=#{OpenMannaConstants::URL}&app_id=#{ENV['FACEBOOK_APP_ID']}&picture=#{OpenMannaConstants::PHOTO}&name=#{OpenMannaConstants::NAME}&description=#{OpenMannaConstants::DISCRIPTION}&redirect_uri=#{OpenMannaConstants::URL}"}
+      %img{ src: '/assets/FacebookLogo.png', :width => "25", :height => "25"}
 
 .container
   .col-md-4
     .bs-callout.bs-callout-primary
       %h4
         %span.glyphicon.glyphicon-phone{"aria-hidden" => "true"}
-        Receive encouraging Bible verses straight to your phone each day.
+          Receive encouraging Bible verses straight to your phone each day.
   .col-md-4
     .bs-callout.bs-callout-success
       %h4
         %span.glyphicon.glyphicon-list-alt{"aria-hidden" => "true"}
-        Over 500 hand-picked New Testament verses ready to be dispensed.
+          Over 500 hand-picked New Testament verses ready to be dispensed.
   .col-md-4
     .bs-callout.bs-callout-default
       %h4
         %span.glyphicon.glyphicon-time{"aria-hidden" => "true"}
-        Create your own delivery schedule for timely supply.
+          Create your own delivery schedule for timely supply.
 
 #instagram
   .album
     .container
-      %h3
-        %img{ src: '/assets/glyph-logo_May2016.png', :width => "25", :height => "25"}
-        &nbsp;
-        Follow Us On Instagram!
-      %h4
-        .container
-          This week's post:
-          %br
-          %br
-          =render 'instagram_post'
+      .col-md-10.col-md-offset-2
+        %h3
+          %img{ src: '/assets/glyph-logo_May2016.png', :width => "25", :height => "25"}
+          Follow Us On Instagram!
+        %h4
+          .container
+            %br
+            =render 'instagram_post'
 
 #contact
   .album
     .container
-      %h3 
-        %span.glyphicon.glyphicon-envelope
-        &nbsp;
-        Contact Us:
-      .container
+      .col-md-10.col-md-offset-2
+        %h3 
+          %span.glyphicon.glyphicon-envelope
+            Contact Us:
         %h5
-          If you have any questions, suggestions, or simply want to share your experiences using OpenManna, we would love to hear from you!
-          %p
-            Please send us an email at
+          .container.col-md-9
+            If you have any questions, suggestions, or simply want to share your experiences using OpenManna, we would love to hear from you! Please send us an email at
             %a{:href => "mailto:open.manna.app@gmail.com"}
               open.manna.app@gmail.com
-        %br
-        %br
+          %br
+          %br
