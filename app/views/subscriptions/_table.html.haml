@@ -1,20 +1,25 @@
 #subscription_table.table-responsive
-  %table.table.table-bordered.table-hover
-    %thead
+  %table.table.table-bordered.table-hover.table-condensed
+    %tbody
       %tr
-        %th Name
-        %th Phone Number
-        %th Subscribed Days
-        %th Time to Send
-        %th Status
-        %th Action
-    - subscriptions.each do |sub|
-      %tr
+        %td
+          %strong
+            = "Name"
         %td= sub.name
-        %td= sub.readable_phone_number
-        %td= sub.subscribed_days
-        %td= sub.readable_hour
+      %tr
+        %td
+          %strong
+            = "Status"
         %td= sub.status
+      %tr
+        %td
+          %strong
+            = "Phone Number"
+        %td= sub.phone_number
+      %tr
+        %td
+          %strong
+            = "Action"
         %td
           =link_to "Edit", edit_subscription_path(sub), class: "btn btn-success"
           |
@@ -24,3 +29,14 @@
             =link_to "Verify", start_verification_path(sub_id: sub.id), class: "btn btn-primary"
           |
           =link_to "Delete", subscription_path(sub), :method => :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to remove this subscription?" }
+      %tr
+        %td
+          %strong
+            = "Subscribed Days"
+        %td= sub.subscribed_days
+      %tr
+        %td
+          %strong
+            = "Time to Send"
+        %td= sub.readable_hour
+%hr
