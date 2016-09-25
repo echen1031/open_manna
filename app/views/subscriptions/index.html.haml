@@ -1,20 +1,21 @@
 .container
-  %br
-  %h1 Subscriptions
-  %br
-  %h5
-    %p
-      1) Create a new subscription by clicking the "New Subscription" button below. 
-    %p
-      2) Activate your subscription by clicking on the "Verify" button within the table.
-    %p
-      3) A 4 digit PIN number will be sent to your phone. Enter the number within 5 minutes to complete your activation.
+  .col-md-6
+    %h1 Subscriptions
+    %br
+    %h5
+      %p
+        1) Create a new subscription by clicking the "New Subscription" button below. 
+      %p
+        2) Activate your subscription by clicking on the "Verify" button within the table.
+      %p
+        3) A 4 digit PIN number will be sent to your phone. Enter the number within 5 minutes to complete your activation.
 
-  %br
-  = link_to "New Subscription", new_subscription_path, class: "btn btn-success"
-  %p
-  %body
-    = render "table", subscriptions: @subscriptions
+    %br
+    = link_to "New Subscription", new_subscription_path, class: "btn btn-success"
+    %hr
+    %body
+      - @subscriptions.each do |subscription|
+        = render "table", sub: subscription
 
 - if flash[:sub_id]
   - @sub_id = flash[:sub_id]
