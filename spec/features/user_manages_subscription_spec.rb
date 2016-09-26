@@ -83,15 +83,26 @@ feature "User manages his or her subscription" do
     end
   end
 
-  scenario "updates his subscription successfully" do
-    subscription = create(:subscription, user_id: user.id)
-    visit subscriptions_path
-    click_link "Edit"
-    fill_in "Name", with: "Test"
-    select('Eastern', :from => 'subscription[time_zone]')
-    click_button "Update Subscription"
-    subscription.reload
-    expect(subscription.name).to eq "Test"
+  context "Updating Subscription" do
+    scenario "Cannot update other's subscription" do
+      user_2 = create(:user)
+      subscription_1= create(:subscription, user_id: user.id, name: "My subscription")
+      subscription_2 = create(:subscription, user_id: user_2.id, name: "Others subscription")
+      visit edit_subscription_path(subscription_2)
+      expect(page).to have_content(subscription_1.name)
+      expect(page).to_not have_content(subscription_2.name)
+    end
+
+    scenario "updates his own subscription successfully" do
+      subscription = create(:subscription, user_id: user.id)
+      visit subscriptions_path
+      click_link "Edit"
+      fill_in "Name", with: "Test"
+      select('Eastern', :from => 'subscription[time_zone]')
+      click_button "Update Subscription"
+      subscription.reload
+      expect(subscription.name).to eq "Test"
+    end
   end
 
   context "Subscription Deletion" do
