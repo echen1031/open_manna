@@ -28,7 +28,6 @@ group :test do
 end
 
 group :development do
-  gem 'pg'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
@@ -42,7 +41,6 @@ end
 
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
@@ -61,4 +59,5 @@ gem 'phony_rails'
 gem 'puma'
 gem "letter_opener", :group => :development
 gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'pg'
 
