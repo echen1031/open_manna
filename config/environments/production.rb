@@ -80,18 +80,9 @@ Rails.application.configure do
   #Mailer
   config.action_mailer.default_url_options = { host: 'openmanna.com' }
 
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :ses
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
 
-  config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com", 
-    :port => 587, 
-    :authentication => :plain, 
-    :domain => 'gmail.com', 
-    :enable_starttls_auto => true,
-    :user_name => ENV["GMAIL_USERNAME"],
-    :password => ENV["GMAIL_PASSWORD"]
-  }
 end

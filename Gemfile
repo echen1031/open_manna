@@ -16,6 +16,7 @@ gem 'bootstrap-sass'
 gem 'roo'
 gem 'roo-xls'
 
+gem 'aws-ses', '~> 0.4.4', require: 'aws/ses'
 
 group :test do
   gem 'rspec-rails'
