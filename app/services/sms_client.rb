@@ -22,8 +22,6 @@ class SMSClient
   end
 
   def check_verification(request_id, code)
-    @client.check_verification(request_id: request_id,
-                                           code: code
-                                          )
+    @client.check_verification(request_id, code: code)
   end
 end
