@@ -18,11 +18,11 @@ class SMSClient
   end
 
   def send_verification(number)
-    @client.send_verification_request(number: number, brand: "OpenManna")
+    @client.start_verification(number: number, brand: "OpenManna")
   end
 
   def check_verification(request_id, code)
-    @client.check_verification_request(request_id: request_id,
+    @client.check_verification(request_id: request_id,
                                            code: code
                                           )
   end
