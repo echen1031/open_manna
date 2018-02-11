@@ -1,4 +1,6 @@
 ActiveAdmin.register Subscription do
+  permit_params Subscription.column_names
+
   index do
     column :id
     column "Belongs To", :user
