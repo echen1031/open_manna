@@ -1,4 +1,6 @@
 ActiveAdmin.register SubscriptionVerse do
+  permit_params SubscriptionVerse.column_names
+
   index do
     column :id
     column :subscription_id

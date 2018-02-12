@@ -1,4 +1,5 @@
 class SubscriptionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_subscription, only: [:edit, :update, :destroy, :pause]
   before_action :validate_ownership, only: [:edit, :update, :destroy, :pause]
   before_action :check_subscription_limit, only: [:create]
