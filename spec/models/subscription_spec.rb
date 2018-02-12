@@ -25,10 +25,11 @@ RSpec.describe Subscription, type: :model do
 
   describe "#retrieve_random_verse" do
     it "does not send same verse twice without going through whole cycle" do
-      create_list(:verse, 2)
-      sub = create(:subscription, stored_verse_ids: [2])
+      verse_1 = create(:verse)
+      verse_2 = create(:verse)
+      sub = create(:subscription, stored_verse_ids: [verse_1.id])
       verse = sub.retrieve_random_verse
-      expect(verse.id).to eq 1
+      expect(verse.id).to eq verse_2.id
     end
   end
 
