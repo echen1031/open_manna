@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922045454) do
+ActiveRecord::Schema.define(version: 20180212055114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,21 +71,24 @@ ActiveRecord::Schema.define(version: 20160922045454) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
-    t.boolean  "send_monday",    default: false
-    t.boolean  "send_tuesday",   default: false
-    t.boolean  "send_wednesday", default: false
-    t.boolean  "send_thursday",  default: false
-    t.boolean  "send_friday",    default: false
-    t.boolean  "send_saturday",  default: false
-    t.boolean  "send_sunday",    default: false
+    t.boolean  "send_monday",      default: false
+    t.boolean  "send_tuesday",     default: false
+    t.boolean  "send_wednesday",   default: false
+    t.boolean  "send_thursday",    default: false
+    t.boolean  "send_friday",      default: false
+    t.boolean  "send_saturday",    default: false
+    t.boolean  "send_sunday",      default: false
     t.integer  "send_hour"
     t.string   "time_zone"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "phone_number"
     t.string   "name"
-    t.boolean  "active",         default: false, null: false
+    t.boolean  "active",           default: false, null: false
+    t.integer  "stored_verse_ids", default: [],                 array: true
   end
+
+  add_index "subscriptions", ["stored_verse_ids"], name: "index_subscriptions_on_stored_verse_ids", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

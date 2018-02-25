@@ -23,4 +23,16 @@ class Subscription < ActiveRecord::Base
       return "send_#{current_day}"
     end
   end
+
+  def retrieve_random_verse
+    Verse.find((Verse.pluck(:id) - stored_verse_ids).sample)
+  end
+
+  def store_verse(verse)
+    self.stored_verse_ids << verse.id
+    self.save
+    if stored_verse_ids.size == Verse.count # reset stored_verse_ids to start new cycle
+      update_columns(stored_verse_ids: [])
+    end
+  end
 end

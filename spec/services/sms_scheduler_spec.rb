@@ -2,11 +2,14 @@ require 'rails_helper'
 
 describe SMSScheduler do
   let(:monday_subscription) { create(:subscription, send_monday: true) }
-  let(:tuesday_subscription) { create(:subscription, send_tuesday: true) }
 
   context "Sending text messages" do
     before do
       Timecop.travel("2016-07-11") #Monday
+      create(:verse)
+      all_subs = double
+      allow(Subscription).to receive(:all).and_return(all_subs)
+      allow(all_subs).to receive(:active).and_return([monday_subscription])
     end
 
     after do
@@ -14,10 +17,7 @@ describe SMSScheduler do
     end
 
     it "enques text message job" do
-      Timecop.travel(1.day)
-      monday_subscription
-      verse = double(:verse, id: 1)
-      allow(Verse).to receive(:random).and_return(verse)
+      Timecop.travel(1.day) #travel to monday
 
       SMSScheduler.set_daily_sms_job
 
@@ -26,9 +26,6 @@ describe SMSScheduler do
 
     it "does not enques text message job on the wrong day" do
       Timecop.travel(2.day)
-      monday_subscription
-      verse = double(:verse, id: 1)
-      allow(Verse).to receive(:random).and_return(verse)
 
       SMSScheduler.set_daily_sms_job
 
