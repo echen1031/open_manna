@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params User.column_names
+  permit_params :email
 
   index do 
     column :id

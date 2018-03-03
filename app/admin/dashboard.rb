@@ -11,7 +11,7 @@ ActiveAdmin.register_page "Dashboard" do
             column :subscription_id
             column :user_id
             column :verse_id do |sub_verse|
-              Verse.find(sub_verse.verse_id).reference
+              sub_verse.verse.reference
             end
             column :created_at do |sub_verse|
               sub = sub_verse.subscription
