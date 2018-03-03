@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get 'start', as: 'start_verification', controller: 'verifications'
   get 'donate', to: 'donations#index'
+  resources :charges
 
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web, at: '/sidekiq'
