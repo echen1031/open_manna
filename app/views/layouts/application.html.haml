@@ -36,6 +36,11 @@
                   Log Out
             -else
               %li
+                %a{:href => "#{url_for(donate_path)}"}
+                  %span.glyphicon.glyphicon-heart-empty
+                  Give
+                  &nbsp;
+              %li
                 %a{:href => "#{url_for(new_user_registration_path)}"}
                   %span.glyphicon.glyphicon-user
                   Sign Up
