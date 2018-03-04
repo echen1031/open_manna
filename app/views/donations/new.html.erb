@@ -1,28 +1,41 @@
-<div class="container" style="padding-top: 100px">
+<div class="container" style="padding-top: 70px">
   <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-default">
       <!-- Default panel contents -->
       <div class="panel-heading">OpenManna Donations</div>
-      <div class="panel-body">
+      <div class="panel-body" style="padding: 30px">
         <p>
-          Thank you for taking interest in my web application 'OpenManna'. What started out as merely a coding exercise, it has transformed into an useful, functioning servcie for over 150 users and counting. I am thankful that OpenManna can be a part of your every day life. 
+          Thank you for taking interest in my web application 'OpenManna'. What started out as merely a coding exercise, has transformed into an useful, functioning service to 150 users and counting! I am thankful that OpenManna can be a part of your every day life.
+        </p>
+        <p>
+          While I plan to keep this service up and running for the forseeable future, it does come with some costs to maintain the site and send out the text messages. So any donation you feel to give is much appreciated.
+        </p>
+        <p>
+          Again, thank you for letting OpenManna to be part of your life. And I hope we can all grow more in the Lord using this App.
+        </p>
+        <p style="text-align: right">
+        Eric
+        </p>
+        <br>
+        <p>
+        <strong>Colosians 3:16a:</strong> "Let the word of Christ dwell in you richly..."
         </p>
       </div>
 
       <!-- List group -->
       <ul class="list-group" style="text-align: cneter">
         <li class="list-group-item donate_price">
-        <div class="btn btn-success btn-amount">$5</div>
+        <div class="btn btn-success btn-amount" id="amount-five" data-amount="5">$5</div>
         </li>
         <li class="list-group-item donate_price">
-        <div class="btn btn-primary btn-amount">$10</div>
+        <div class="btn btn-primary btn-amount" id="amount-ten" data-amount="10">$10</div>
         </li>
         <li class="list-group-item donate_price">
-        <div class="btn btn-info btn-amount">$20</div>
+        <div class="btn btn-info btn-amount" id="amount-twenty" data-amount="20">$20</div>
         </li>
       </ul>
       <div class="panel-footer">
-        <%= form_tag donations_path do %>
+        <%= form_tag donations_path, id: "donationform" do %>
           <div id="error_explanation">
             <% if flash[:error].present? %>
               <p><%= flash[:error] %></p>
@@ -52,12 +65,28 @@
   var handler = StripeCheckout.configure({
     key: '<%= Rails.configuration.stripe[:publishable_key] %>',
     locale: 'auto',
-    name: 'Sand Castles United',
+    name: 'OpenManna',
     description: 'One-time donation',
     token: function(token) {
       $('input#stripeToken').val(token.id);
       $('form').submit();
     }
+  });
+
+  // Amount Selections
+  $('#amount-five').on('click', function() {
+    var giveAmount = $(this).attr("data-amount");
+    document.getElementById("amount").value=giveAmount;
+  });
+
+  $('#amount-ten').on('click', function() {
+    var giveAmount = $(this).attr("data-amount");
+    document.getElementById("amount").value=giveAmount;
+  });
+
+  $('#amount-twenty').on('click', function() {
+    var giveAmount = $(this).attr("data-amount");
+    document.getElementById("amount").value=giveAmount;
   });
 
   // Validations
