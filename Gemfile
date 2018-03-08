@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'rollbar'
+gem 'stripe'
 
 #excel parser
 gem 'roo'
@@ -52,7 +53,6 @@ gem 'simple_form'
 gem 'rest-client'
 gem 'sidekiq'
 gem 'nexmo'
-gem 'sinatra', require: false
 gem 'slim'
 gem 'draper'
 gem 'html2haml'
