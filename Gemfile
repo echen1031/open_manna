@@ -53,7 +53,6 @@ gem 'simple_form'
 gem 'rest-client'
 gem 'sidekiq'
 gem 'nexmo'
-gem 'sinatra', require: false
 gem 'slim'
 gem 'draper'
 gem 'html2haml'
