@@ -64,7 +64,7 @@ class SubscriptionsController < ApplicationController
 
   def check_subscription_limit
     if current_user.over_subscription_limit?
-      flash[:error] = "Sorry, only two subscriptions per user are allowed at this time."
+      flash[:error] = "Sorry, only one subscription per user are allowed at this time."
       redirect_to subscriptions_path
     end
   end

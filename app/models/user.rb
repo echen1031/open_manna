@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :verses, through: :subscription_verses
 
   def over_subscription_limit?
-    subscriptions.size >= 2
+    subscriptions.size >= 1
   end
 
   def admin?

@@ -42,8 +42,10 @@ feature "User manages his or her subscription" do
         creates_a_sunday_subscription
         expect(Subscription.first.send_sunday).to eq true
       end
+    end
 
-      scenario "creates a second subscription" do
+    context "Unsuccessful Creation" do
+      scenario "User hits subscriptino limit" do
         create(:subscription, user_id: user.id)
         visit subscriptions_path
         click_link 'New Subscription'
@@ -53,24 +55,8 @@ feature "User manages his or her subscription" do
         select('7 am', :from => 'Select Time')
         check 'subscription_send_monday'
         click_button 'Create'
-        expect(page).to have_content "Subscription created successfully."
-        expect(Subscription.count).to eq 2
-      end
-    end
-
-    context "Unsuccessful Creation" do
-      scenario "User hits subscriptino limit" do
-        create_list(:subscription, 2, user_id: user.id)
-        visit subscriptions_path
-        click_link 'New Subscription'
-        fill_in 'Name', with: 'Morning Revival'
-        fill_in 'Phone number', with: '555-555-5555'
-        select('Eastern', :from => 'subscription[time_zone]')
-        select('7 am', :from => 'Select Time')
-        check 'subscription_send_monday'
-        click_button 'Create'
-        expect(page).to have_content("Sorry, only two subscriptions per user are allowed at this time.")
-        expect(Subscription.count).to eq 2
+        expect(page).to have_content("Sorry, only one subscription per user are allowed at this time.")
+        expect(Subscription.count).to eq 1
       end
     end
   end
