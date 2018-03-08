@@ -32,8 +32,11 @@ class DonationsController < ApplicationController
       :description => 'Custom donation'
     )
 
+  flash[:notice] = "Thank you! Your donation of #{view_context.number_to_currency(@amount * 0.01)} has been received."
+  redirect_to root_path
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
   end
+
 end

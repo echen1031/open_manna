@@ -2,24 +2,27 @@
   <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">OpenManna Donations</div>
+      <div class="panel-heading"><strong>Colosians 3:16a:</strong> "Let the word of Christ dwell in you richly..."</div>
       <div class="panel-body" style="padding: 30px">
         <p>
-          Thank you for taking interest in my web application 'OpenManna'. What started out as merely a coding exercise, has transformed into an useful, functioning service to 150 users and counting! I am thankful that OpenManna can be a part of your every day life.
+          Hi there!
         </p>
         <p>
-          While I plan to keep this service up and running for the forseeable future, it does come with some costs to maintain the site and send out the text messages. So any donation you feel to give is much appreciated.
+          Thank you for taking interest in my App and letting it to be a part of your life. I hope it has enriched your pursuit of the Lord as it has for me.
         </p>
         <p>
-          Again, thank you for letting OpenManna to be part of your life. And I hope we can all grow more in the Lord using this App.
+          While I plan to keep this service running for the forseeable future, it does come with some costs to maintain it (about $56/month). So any donation you feel led to give is very much appreciated! :)
         </p>
-        <p style="text-align: right">
-        Eric
+        <p>
+          Thank you again and God bless!
         </p>
         <br>
-        <p>
-        <strong>Colosians 3:16a:</strong> "Let the word of Christ dwell in you richly..."
-        </p>
+        <div style="text-align: right">
+          <p>
+          Sincerely,<br>
+            Eric
+          </p>
+        </div>
       </div>
 
       <!-- List group -->
@@ -66,7 +69,7 @@
     key: '<%= Rails.configuration.stripe[:publishable_key] %>',
     locale: 'auto',
     name: 'OpenManna',
-    description: 'One-time donation',
+    description: 'One-Time Donation',
     token: function(token) {
       $('input#stripeToken').val(token.id);
       $('form').submit();
