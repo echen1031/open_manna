@@ -4,10 +4,10 @@ class VerificationRequestSender
   end
 
   def send_successful_request?
-    @result['status'] == "0"
+    @result.status == "0"
   end
 
   def request_id
-    @result['request_id']
+    @result.request_id
   end
 end
