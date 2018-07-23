@@ -1,6 +1,6 @@
 class NexmoResponseManager
   def initialize(nexmo_response)
-    messages = nexmo_response['messages'].first
+    messages = nexmo_response.messages.first
     @nexmo_response = messages
   end
 
@@ -13,11 +13,11 @@ class NexmoResponseManager
   end
 
   def status_code
-    @nexmo_response['status']
+    @nexmo_response.status
   end
 
   def error_text
-    @nexmo_response['error-text']
+    @nexmo_response.error_text
   end
 
   def status_text
@@ -25,10 +25,10 @@ class NexmoResponseManager
   end
 
   def message_id
-    successful ? @nexmo_response['message-id'] : "N/A"
+    successful ? @nexmo_response.message_id : "N/A"
   end
 
   def to
-    successful ? @nexmo_response['to'] : "N/A"
+    successful ? @nexmo_response.to : "N/A"
   end
 end
