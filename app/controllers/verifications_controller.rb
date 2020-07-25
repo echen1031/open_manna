@@ -16,7 +16,7 @@ class VerificationsController < ApplicationController
 
   def edit
   end
-  
+
   def update
     result = VerificationRequestChecker.new(params[:id], params[:code])
 
