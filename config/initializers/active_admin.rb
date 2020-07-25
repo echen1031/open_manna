@@ -115,7 +115,7 @@ ActiveAdmin.setup do |config|
    #config.root_to = 'dashboard#index'
 
    #Skip filter 
-   config.skip_before_filter :authenticate_user!
+   config.skip_before_action :authenticate_user!
   # == Admin Comments
   #
   # This allows your users to comment on any resource registered with Active Admin.

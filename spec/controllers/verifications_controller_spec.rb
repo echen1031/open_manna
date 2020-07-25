@@ -3,7 +3,7 @@ require 'rails_helper'
 describe VerificationsController, type: :controller do
   let(:user) { create(:user) }
   before do
-    sign_in :user, user
+    sign_in(user)
   end
   let(:request_id) { double }
   let(:result) { double }
@@ -18,7 +18,7 @@ describe VerificationsController, type: :controller do
         expect(result).to receive(:phone_number_confirmed?).and_return(true)
         expect(SMSClient).to receive(:new).and_return(nexmo_client)
         expect(nexmo_client).to receive(:send_welcome_message).with(to: sub.phone_number)
-        put :update, {:id => request_id, :code => verification_code, :sub_id => sub.id}
+        put :update, params: {id: request_id, code: verification_code, sub_id: sub.id}
         expect(Subscription.first.active).to eq true
       end
     end

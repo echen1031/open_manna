@@ -4,7 +4,6 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'webmock/rspec'
-require 'support/factory_girl'
 require 'support/warden'
 require 'support/shoulda_matchers'
 require 'support/rspec_sidekiq'
@@ -24,5 +23,5 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.include MailerMacros
   config.before(:each) { reset_email }
-  config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end
