@@ -23,4 +23,5 @@ class User < ActiveRecord::Base
   def number_of_verses_received
     self.verses.size
   end
+
 end
