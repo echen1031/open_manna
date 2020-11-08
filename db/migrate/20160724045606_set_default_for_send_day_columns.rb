@@ -1,4 +1,4 @@
-class SetDefaultForSendDayColumns < ActiveRecord::Migration
+class SetDefaultForSendDayColumns < ActiveRecord::Migration[5.2]
   def change
     change_column :subscriptions, :send_monday, :boolean, default: false
     change_column :subscriptions, :send_tuesday, :boolean, default: false

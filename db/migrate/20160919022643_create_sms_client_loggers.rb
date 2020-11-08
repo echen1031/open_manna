@@ -1,4 +1,4 @@
-class CreateSmsClientLoggers < ActiveRecord::Migration
+class CreateSmsClientLoggers < ActiveRecord::Migration[5.2]
   def change
     create_table :sms_client_loggers do |t|
       t.string :status_code

@@ -1,4 +1,4 @@
-class ChangeSendDayName < ActiveRecord::Migration
+class ChangeSendDayName < ActiveRecord::Migration[5.2]
   def change
     rename_column :subscriptions, :send_day_1, :send_monday
     rename_column :subscriptions, :send_day_2, :send_tuesday
