@@ -32,7 +32,6 @@ group :test do
 end
 
 group :development do
-  gem 'web-console', '~> 2.0'
   gem 'spring'
 end
 
@@ -48,6 +47,8 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'railties'
+gem 'coffee-rails'
 gem 'devise'
 gem 'figaro'
 gem 'simple_form'

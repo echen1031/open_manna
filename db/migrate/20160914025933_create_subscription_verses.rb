@@ -1,4 +1,4 @@
-class CreateSubscriptionVerses < ActiveRecord::Migration
+class CreateSubscriptionVerses < ActiveRecord::Migration[5.2]
   def change
     create_table :subscription_verses do |t|
       t.references :subscription, index: true, null: false
