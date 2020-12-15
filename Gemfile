@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.4.2'
+ruby '2.5.0'
 
 
 gem 'pg', '>= 0.18', '< 2.0'
@@ -54,7 +54,7 @@ gem 'figaro'
 gem 'simple_form'
 gem 'rest-client'
 gem 'sidekiq'
-gem 'nexmo'
+gem 'vonage'
 gem 'slim'
 gem 'draper'
 gem 'html2haml'

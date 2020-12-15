@@ -1,10 +1,10 @@
 class SMSClient
-  require 'nexmo'
+  require 'vonage'
   WELCOME_TEXT = "Welcome to OpenManna! You will be receiving scheduled verses from this number. Enjoy! - OpenManna.com"
 
   def initialize
-    @client = Nexmo::Client.new(key: ENV['NEXMO_API_KEY'],
-                                    secret: ENV['NEXMO_API_SECRET'])
+    @client = Vonage::Client.new(api_key: ENV['NEXMO_API_KEY'],
+                                    api_secret: ENV['NEXMO_API_SECRET'])
     @from = ENV['NEXMO_PHONE']
     @welcome_text = WELCOME_TEXT
   end
