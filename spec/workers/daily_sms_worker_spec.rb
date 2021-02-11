@@ -3,7 +3,7 @@ require 'rails_helper'
 describe DailySMSWorker do
   let(:sms_client) { double }
   let(:response) { double }
-  let(:nexmo_response) { double }
+  let(:vonage_response) { double }
   let(:status_code) { "0" }
   let(:status_text) { "success" }
   let(:msg_id) { "12345" }
@@ -18,8 +18,8 @@ describe DailySMSWorker do
       verse_text = "John 1:1 - " + verse.text + " - OpenManna.com"
       expect(SMSClient).to receive(:new).and_return(sms_client)
       expect(sms_client).to receive(:send_message).with(to: phone_number, text: verse_text).and_return(response)
-      expect(NexmoResponseManager).to receive(:new).with(response).and_return(nexmo_response)
-      expect(nexmo_response).to receive(:throttled).and_return(false)
+      expect(VonageResponseManager).to receive(:new).with(response).and_return(vonage_response)
+      expect(vonage_response).to receive(:throttled).and_return(false)
 
       DailySMSWorker.new.perform(subscription.id, verse.id)
     end
