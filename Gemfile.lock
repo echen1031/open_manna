@@ -218,8 +218,7 @@ GEM
       byebug (~> 11.0)
       pry (~> 0.13.0)
     public_suffix (4.0.5)
-    puma (4.3.5)
-      nio4r (~> 2.0)
+    puma (3.8.2)
     rack (2.2.3)
     rack-protection (2.0.8.1)
       rack
@@ -415,7 +414,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   phony_rails
   pry-byebug
-  puma
+  puma (~> 3.8.1)
   rails (~> 5.2.0)
   rails_12factor
   railties
@@ -440,7 +439,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 2.5.0p0
+   ruby 2.6.6p146
 
 BUNDLED WITH
-   2.2.1
+   2.2.29
