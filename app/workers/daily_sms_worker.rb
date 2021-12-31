@@ -8,8 +8,8 @@ class DailySMSWorker
     phone_number = sub.phone_number
     bible_verse = VerseDecorator.decorate(Verse.find(verse_id))
     response = SMSClient.new.send_message(to: phone_number, text: bible_verse.text_message)
-    nexmo_response = NexmoResponseManager.new(response)
-    if nexmo_response.throttled
+    vonage_response = VonageResponseManager.new(response)
+    if vonage_response.throttled
       resend_message(subscription_id, verse_id) 
     end
   end

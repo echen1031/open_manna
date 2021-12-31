@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.4.2'
+ruby '2.6.6'
 
 
 gem 'pg', '>= 0.18', '< 2.0'
@@ -54,13 +54,13 @@ gem 'figaro'
 gem 'simple_form'
 gem 'rest-client'
 gem 'sidekiq'
-gem 'nexmo'
+gem 'vonage'
 gem 'slim'
 gem 'draper'
 gem 'html2haml'
 gem 'haml-rails', '~> 1.0'
 gem 'phony_rails'
-gem 'puma'
+gem 'puma', '~> 3.8.1'
 gem "letter_opener", :group => :development
 gem 'activeadmin'
 

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       get 'activate', as: 'activate'
     end
   end
+  post '/message_status', to: 'inbound_sms#message_status_webhook'
+  post '/inbound_message', to: 'inbound_sms#inbound_message_webhook'
 
   get 'start', as: 'start_verification', controller: 'verifications'
 
