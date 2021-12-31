@@ -60,7 +60,7 @@ gem 'draper'
 gem 'html2haml'
 gem 'haml-rails', '~> 1.0'
 gem 'phony_rails'
-gem 'puma', '~> 3.8.1'
+gem 'puma', '~> 4.3.9'
 gem "letter_opener", :group => :development
 gem 'activeadmin'
 
