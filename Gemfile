@@ -10,7 +10,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'rollbar'
 gem 'stripe'
@@ -60,7 +59,8 @@ gem 'draper'
 gem 'html2haml'
 gem 'haml-rails', '~> 1.0'
 gem 'phony_rails'
-gem 'puma', '~> 3.8.1'
+gem 'puma', '~> 4.3.9'
 gem "letter_opener", :group => :development
 gem 'activeadmin'
+gem "addressable", ">= 2.8.0"
 
