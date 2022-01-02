@@ -6,9 +6,9 @@ class SMSScheduler
       @sub = sub
       @random_verse = sub.retrieve_random_verse
       sub.store_verse(@random_verse)
-
+      seconds = rand(0..60)
       Time.use_zone(sub.time_zone) do
-        user_preferred_time_in_utc = Time.zone.now.change(hour: @time_to_send).utc
+        user_preferred_time_in_utc = Time.zone.now.change(hour: @time_to_send, sec: seconds).utc
         DailySMSWorker.perform_at(user_preferred_time_in_utc, @sub.id, @random_verse.id)
       end
     end
