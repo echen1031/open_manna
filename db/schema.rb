@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_31_003022) do
+ActiveRecord::Schema.define(version: 2022_01_03_234619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,42 @@ ActiveRecord::Schema.define(version: 2021_12_31_003022) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "billing_customers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "stripe_id", null: false
+    t.string "default_source"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_billing_customers_on_user_id"
+  end
+
+  create_table "billing_plans", force: :cascade do |t|
+    t.bigint "billing_product_id", null: false
+    t.string "stripe_id", null: false
+    t.string "stripe_plan_name"
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "billing_products", force: :cascade do |t|
+    t.string "stripe_id", null: false
+    t.string "stripe_product_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "billing_subscriptions", force: :cascade do |t|
+    t.bigint "billing_plan_id", null: false
+    t.bigint "billing_customer_id", null: false
+    t.string "stripe_id", null: false
+    t.string "status"
+    t.datetime "current_period_end"
+    t.datetime "cancel_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sms_client_loggers", id: :serial, force: :cascade do |t|
