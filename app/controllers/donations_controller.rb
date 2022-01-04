@@ -1,7 +1,22 @@
 class DonationsController < ApplicationController
   skip_before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: [:checkout_session]
 
   def new
+  end
+
+  def checkout_session
+    session = Stripe::Checkout::Session.create({
+      line_items: [{
+        # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+        price: 'price_1KE0na47nimxakiAgA1X3nWE',
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: 'http://localhost:3000/success.html',
+      cancel_url: 'http://localhost:3000/cancel.html',
+    })
+    redirect_to session.url
   end
 
   def create
@@ -32,8 +47,8 @@ class DonationsController < ApplicationController
       :description => 'Custom donation'
     )
 
-  flash[:notice] = "Thank you! Your donation of #{view_context.number_to_currency(@amount * 0.01)} has been received."
-  redirect_to root_path
+    flash[:notice] = "Thank you! Your donation of #{view_context.number_to_currency(@amount * 0.01)} has been received."
+    redirect_to root_path
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path

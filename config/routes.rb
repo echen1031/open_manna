@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
   post '/message_status', to: 'inbound_sms#message_status_webhook'
   post '/inbound_message', to: 'inbound_sms#inbound_message_webhook'
+  post '/create-checkout-session', to: 'donations#checkout_session'
 
   get 'start', as: 'start_verification', controller: 'verifications'
 
