@@ -10,11 +10,11 @@ end
 
 if Rails.env.test? || Rails.env.development?
   Sidekiq.configure_server do |config|
-    config.redis = { url: "redis://#{ENV['REDIS_HOST']}:6379/1", namespace: 'staging' }
+    config.redis = { url: 'redis://localhost:6379/1'}
   end
 
   Sidekiq.configure_client do |config|
-    config.redis = { url: "redis://#{ENV['REDIS_HOST']}:6379/1", namespace: 'staging' }
+    config.redis = { url: 'redis://localhost:6379/1'}
   end
 elsif Rails.env.staging?
   Sidekiq.configure_server do |config|

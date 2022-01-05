@@ -18,8 +18,6 @@ describe DailySMSWorker do
       verse_text = "John 1:1 - " + verse.text + " - OpenManna.com. Reply STOP to stop subscription"
       expect(SMSClient).to receive(:new).and_return(sms_client)
       expect(sms_client).to receive(:send_message).with(to: phone_number, text: verse_text).and_return(response)
-      expect(VonageResponseManager).to receive(:new).with(response).and_return(vonage_response)
-      expect(vonage_response).to receive(:throttled).and_return(false)
 
       DailySMSWorker.new.perform(subscription.id, verse.id)
     end
