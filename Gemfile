@@ -59,7 +59,7 @@ gem 'draper'
 gem 'html2haml'
 gem 'haml-rails', '~> 1.0'
 gem 'phony_rails'
-gem 'puma', '~> 4.3.9'
+gem 'puma', '~> 4.3.12'
 gem "letter_opener", :group => :development
 gem 'activeadmin'
 gem "addressable", ">= 2.8.0"
