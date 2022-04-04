@@ -1,0 +1,24 @@
+= form_tag team_subscriptions_path(current_team), method: :post, data: {controller: "subscribe-form"} do |f|
+  - #
+  - # This element inserts the Stripe publishable key so that we can grab it in the JavaScript
+  - #
+  %div{"data-target" => "subscribe-form.stripePublishableKey", "data-stripe-publishable-key" => ENV["STRIPE_PUBLISHABLE_KEY"]}
+  - #
+  - # Here are the two different pricing options
+  - #
+  .subscription-options
+    %label.subscription-option
+      .option-name Yearly
+      .option-price= Money.new(yearly.amount).format
+      = radio_button_tag "stripe_price_id", yearly.id, params[:stripe_price_id] == yearly.id
+
+  - #
+  - # Here's where we'll render the Stripe Elements credit card field, as well as a div
+  - # for an error and a hidden input to store the credit card token.
+  - #
+  %div{"data-target" => "subscribe-form.cardInput"}
+  .text-danger.mb-4.d-none{"data-target" => "subscribe-form.cardError"}
+  = hidden_field_tag 'card_token', params[:card_token], "data-target" => "subscribe-form.cardTokenInput"
+
+  .actions
+    = submit_tag "Subscribe", class: 'btn btn-lg btn-block btn-snippets', data: {target: "subscribe-form.submit"}
