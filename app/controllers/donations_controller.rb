@@ -3,6 +3,7 @@ class DonationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:checkout_session]
 
   def new
+    @yearly = SubscriptionPrice.current_yearly
   end
 
   def checkout_session
