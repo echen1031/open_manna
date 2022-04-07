@@ -21,38 +21,39 @@ class DonationsController < ApplicationController
   end
 
   def create
-    @amount = params[:amount]
+    binding.pry
+    #@amount = params[:amount]
 
-    @amount = @amount.gsub('$', '').gsub(',', '')
+    #@amount = @amount.gsub('$', '').gsub(',', '')
 
-    begin
-      @amount = Float(@amount).round(2)
-    rescue
-      flash[:error] = 'Charge not completed. Please enter a valid amount in USD ($).'
-      redirect_to new_charge_path
-      return
-    end
+    #begin
+    #  @amount = Float(@amount).round(2)
+    #rescue
+    #  flash[:error] = 'Charge not completed. Please enter a valid amount in USD ($).'
+    #  redirect_to new_charge_path
+    #  return
+    #end
 
-    @amount = (@amount * 100).to_i # Must be an integer!
+    #@amount = (@amount * 100).to_i # Must be an integer!
 
-    if @amount < 500
-      flash[:error] = 'Charge not completed. Donation amount must be at least $5.'
-      redirect_to new_charge_path
-      return
-    end
+    #if @amount < 500
+    #  flash[:error] = 'Charge not completed. Donation amount must be at least $5.'
+    #  redirect_to new_charge_path
+    #  return
+    #end
 
-    Stripe::Charge.create(
-      :amount => @amount,
-      :currency => 'usd',
-      :source => params[:stripeToken],
-      :description => 'Custom donation'
-    )
+    #Stripe::Charge.create(
+    #  :amount => @amount,
+    #  :currency => 'usd',
+    #  :source => params[:stripeToken],
+    #  :description => 'Custom donation'
+    #)
 
-    flash[:notice] = "Thank you! Your donation of #{view_context.number_to_currency(@amount * 0.01)} has been received."
-    redirect_to root_path
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to new_charge_path
+    #flash[:notice] = "Thank you! Your donation of #{view_context.number_to_currency(@amount * 0.01)} has been received."
+    #redirect_to root_path
+  #rescue Stripe::CardError => e
+  #  flash[:error] = e.message
+  #  redirect_to new_charge_path
   end
 
 end

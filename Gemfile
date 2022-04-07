@@ -10,6 +10,7 @@ gem 'money'
 
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'webpacker'
 gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass'
 gem 'rollbar'
