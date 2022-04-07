@@ -9,7 +9,7 @@ class DonationsController < ApplicationController
     session = Stripe::Checkout::Session.create({
       line_items: [{
         # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-        price: 'price_1KE0na47nimxakiAgA1X3nWE',
+        price: ENV['YEARLY_PRICE_ID'],
         quantity: 1,
       }],
       mode: 'subscription',

@@ -29,4 +29,5 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
   match '*path', via: :all, to: redirect('/404')
+  post '/stripe/callbacks', to: 'stripe_callbacks#callbacks'
 end
