@@ -1,11 +1,18 @@
 class DonationsController < ApplicationController
-  skip_before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token, only: [:checkout_session]
+  before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: [:checkout_session, :manage]
 
   def new
   end
 
   def checkout_session
+    unless current_user.stripe_customer_id.present?
+      customer = Stripe::Customer.create({
+        email: current_user.email
+      })
+      current_user.update_columns(stripe_customer_id: customer.id)
+    end
+
     session = Stripe::Checkout::Session.create({
       line_items: [{
         # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
@@ -13,10 +20,20 @@ class DonationsController < ApplicationController
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: 'http://localhost:3000/success.html',
-      cancel_url: 'http://localhost:3000/cancel.html',
+      customer: current_user.stripe_customer_id,
+      success_url: subscriptions_url,
+      cancel_url: root_url,
     })
     redirect_to session.url
+  end
+
+  def manage
+    portal = Stripe::BillingPortal::Session.create({
+      customer: current_user.stripe_customer_id,
+      return_url: subscriptions_url,
+    })
+
+    redirect_to portal["url"]
   end
 
   def create

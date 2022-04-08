@@ -47,7 +47,6 @@ class StripeCallbacksController < ApplicationController
       # puts data_object
     end
 
-    content_type 'application/json'
-    { status: 'success' }.to_json
+    render json: { status: 'success' }, status: 200
   end
 end

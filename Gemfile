@@ -37,6 +37,7 @@ end
 group :test, :development do
   gem 'factory_bot_rails'
   gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'launchy'
   gem 'timecop'
 end
