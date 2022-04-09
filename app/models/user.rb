@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions, dependent: :destroy
   has_many :subscription_verses, dependent: :destroy
   has_many :verses, through: :subscription_verses
+  has_one :plan, dependent: :destroy
 
   def over_subscription_limit?
     subscriptions.size >= 1

@@ -64,4 +64,6 @@ gem 'puma', '~> 4.3.9'
 gem "letter_opener", :group => :development
 gem 'activeadmin'
 gem "addressable", ">= 2.8.0"
+gem 'enumerize'
+gem 'aasm'
 
