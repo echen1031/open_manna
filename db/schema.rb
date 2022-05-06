@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_09_040000) do
+ActiveRecord::Schema.define(version: 2022_05_06_042122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,14 +47,22 @@ ActiveRecord::Schema.define(version: 2022_04_09_040000) do
   end
 
   create_table "plans", force: :cascade do |t|
-    t.string "name"
-    t.string "external_id"
-    t.integer "subscription_limit"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "aasm_state"
+    t.bigint "product_id"
     t.index ["user_id"], name: "index_plans_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "display_name"
+    t.string "external_id"
+    t.integer "subscription_limit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "description"
   end
 
   create_table "sms_client_loggers", id: :serial, force: :cascade do |t|
@@ -115,6 +123,7 @@ ActiveRecord::Schema.define(version: 2022_04_09_040000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "stripe_customer_id"
+    t.string "status"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

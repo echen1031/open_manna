@@ -1,7 +1,7 @@
 class SubscriptionsController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!
   before_action :set_subscription, only: [:edit, :update, :destroy, :pause]
-  before_action :validate_ownership, only: [:edit, :update, :destroy, :pause]
   before_action :check_subscription_limit, only: [:create]
 
   def index
@@ -65,12 +65,6 @@ class SubscriptionsController < ApplicationController
   def check_subscription_limit
     if current_user.over_subscription_limit?
       flash[:error] = "Sorry, only one subscription per user are allowed at this time."
-      redirect_to subscriptions_path
-    end
-  end
-
-  def validate_ownership
-    if current_user != @subscription.user
       redirect_to subscriptions_path
     end
   end

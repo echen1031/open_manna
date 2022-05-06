@@ -26,11 +26,12 @@ class StripeCallbacksController < ApplicationController
     data_object = data['object']
 
     if event_type == 'invoice.paid'
-      # Used to provision services after the trial has ended.
-      # The status of the invoice will show up as paid. Store the status in your
-      # database to reference when a user accesses your service to avoid hitting rate
-      # limits.
-      # puts data_object
+      user = User.find_by(stripe_customer_id: data_object.customer)
+      product = Product.find_by(external_id: data_object.lines.data[0].price.id)
+      if user.present? && product.present?
+        user.plan.update_columns(product_id: product.id)
+        user.plan.activate!
+      end
     end
 
     if event_type == 'invoice.payment_failed'

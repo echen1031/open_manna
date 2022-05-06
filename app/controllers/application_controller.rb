@@ -12,4 +12,9 @@ class ApplicationController < ActionController::Base
       subscriptions_path
     end
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = exception.message
+    redirect_to root_url
+  end
 end

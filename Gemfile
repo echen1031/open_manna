@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass'
 gem 'rollbar'
 gem 'stripe'
+gem 'cancancan'
 
 #excel parser
 gem 'roo'

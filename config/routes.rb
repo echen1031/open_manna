@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :verifications, only: [:edit, :update]
+  resources :plans, only: [:show]
   resources :subscriptions, only: [:index, :new, :edit, :update, :create, :destroy] do
     member do
       get 'pause', as: 'pause'

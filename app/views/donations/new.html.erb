@@ -7,10 +7,13 @@
     </div>
   </div>
   <form action="/create-checkout-session" method="POST">
-    <button type="submit" id="checkout-button">Checkout</button>
+    <input name="price_id" type="hidden" value=<%= "#{@basic_price_id}" %> />
+    <button type="submit" id="checkout-button">Basic Plan</button>
+  </form>
+
+  <form action="/create-checkout-session" method="POST">
+    <input name="price_id" type="hidden" value=<%= "#{@premium_price_id}" %> />
+    <button type="submit" id="checkout-button">Premium Plan</button>
   </form>
   <br>
-  <form action="/manage-subscription" method="POST">
-    <button type="submit" id="checkout-button">Manage Subscription</button>
-  </form>
 </section>

@@ -3,6 +3,8 @@ class DonationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:checkout_session, :manage]
 
   def new
+    @basic_price_id = ENV['BASIC_PRICE_ID']
+    @premium_price_id = ENV['PREMIUM_PRICE_ID']
   end
 
   def checkout_session
@@ -16,7 +18,7 @@ class DonationsController < ApplicationController
     session = Stripe::Checkout::Session.create({
       line_items: [{
         # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-        price: ENV['YEARLY_PRICE_ID'],
+        price: params["price_id"],
         quantity: 1,
       }],
       mode: 'subscription',
