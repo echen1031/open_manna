@@ -30,22 +30,9 @@ class StripeCallbacksController < ApplicationController
       product = Product.find_by(external_id: data_object.lines.data[0].price.id)
       if user.present? && product.present?
         user.plan.update_columns(product_id: product.id)
-        user.plan.activate!
+        user.update_columns(plan_period_end: data_object.lines.data[0].period.end)
+        user.plan.activate! if user.plan.aasm_state != 'active'
       end
-    end
-
-    if event_type == 'invoice.payment_failed'
-      # If the payment fails or the customer does not have a valid payment method,
-      # an invoice.payment_failed event is sent, the subscription becomes past_due.
-      # Use this webhook to notify your user that their payment has
-      # failed and to retrieve new card details.
-      # puts data_object
-    end
-
-    if event_type == 'customer.subscription.deleted'
-      # handle subscription canceled automatically based
-      # upon your subscription settings. Or if the user cancels it.
-      # puts data_object
     end
 
     render json: { status: 'success' }, status: 200
