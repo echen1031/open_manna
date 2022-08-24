@@ -10,7 +10,8 @@ class Subscription < ActiveRecord::Base
   scope :active, -> { where(active: true) }
 
   def no_sms_for_today
-    self.send(current_day_in_words) == false
+    return true
+    #self.send(current_day_in_words) == false
   end
 
   def new_subscription?
